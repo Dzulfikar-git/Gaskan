@@ -7,16 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		263C38A729D722D400A8676C /* SF-Mono-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 263C38A429D722D400A8676C /* SF-Mono-Bold.otf */; };
+		263C38A829D722D400A8676C /* SF-Mono-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 263C38A529D722D400A8676C /* SF-Mono-Semibold.otf */; };
+		263C38A929D722D400A8676C /* SF-Mono-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 263C38A629D722D400A8676C /* SF-Mono-Regular.otf */; };
+		263C38AC29D722F600A8676C /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 263C38AA29D722F600A8676C /* SF-Pro-Text-Regular.otf */; };
+		263C38AD29D722F600A8676C /* SF-Pro-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 263C38AB29D722F600A8676C /* SF-Pro-Text-SemiboldItalic.otf */; };
+		263C38B029D723D600A8676C /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C38AF29D723D600A8676C /* MainScreenView.swift */; };
 		266246D629D71F8A00F8B699 /* GaskanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266246D529D71F8A00F8B699 /* GaskanApp.swift */; };
-		266246D829D71F8A00F8B699 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266246D729D71F8A00F8B699 /* ContentView.swift */; };
 		266246DA29D71F8B00F8B699 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266246D929D71F8B00F8B699 /* Assets.xcassets */; };
 		266246DD29D71F8B00F8B699 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266246DC29D71F8B00F8B699 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		263C38A429D722D400A8676C /* SF-Mono-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Bold.otf"; sourceTree = "<group>"; };
+		263C38A529D722D400A8676C /* SF-Mono-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Semibold.otf"; sourceTree = "<group>"; };
+		263C38A629D722D400A8676C /* SF-Mono-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Regular.otf"; sourceTree = "<group>"; };
+		263C38AA29D722F600A8676C /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		263C38AB29D722F600A8676C /* SF-Pro-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		263C38AE29D7231900A8676C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		263C38AF29D723D600A8676C /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		266246D229D71F8A00F8B699 /* Gaskan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gaskan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		266246D529D71F8A00F8B699 /* GaskanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaskanApp.swift; sourceTree = "<group>"; };
-		266246D729D71F8A00F8B699 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		266246D929D71F8B00F8B699 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		266246DC29D71F8B00F8B699 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,6 +43,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		263C389E29D7200600A8676C /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				263C38A329D7203200A8676C /* FuelEfficiency */,
+				263C38A229D7202B00A8676C /* VehicleMileage */,
+				263C38A129D7202500A8676C /* Onboarding */,
+				263C38AF29D723D600A8676C /* MainScreenView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		263C389F29D7201000A8676C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				263C38A429D722D400A8676C /* SF-Mono-Bold.otf */,
+				263C38A629D722D400A8676C /* SF-Mono-Regular.otf */,
+				263C38AA29D722F600A8676C /* SF-Pro-Text-Regular.otf */,
+				263C38AB29D722F600A8676C /* SF-Pro-Text-SemiboldItalic.otf */,
+				263C38A529D722D400A8676C /* SF-Mono-Semibold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		263C38A029D7201500A8676C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		263C38A129D7202500A8676C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		263C38A229D7202B00A8676C /* VehicleMileage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VehicleMileage;
+			sourceTree = "<group>";
+		};
+		263C38A329D7203200A8676C /* FuelEfficiency */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FuelEfficiency;
+			sourceTree = "<group>";
+		};
 		266246C929D71F8A00F8B699 = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +113,11 @@
 		266246D429D71F8A00F8B699 /* Gaskan */ = {
 			isa = PBXGroup;
 			children = (
+				263C38AE29D7231900A8676C /* Info.plist */,
+				263C38A029D7201500A8676C /* Extensions */,
+				263C389F29D7201000A8676C /* Fonts */,
+				263C389E29D7200600A8676C /* Screens */,
 				266246D529D71F8A00F8B699 /* GaskanApp.swift */,
-				266246D729D71F8A00F8B699 /* ContentView.swift */,
 				266246D929D71F8B00F8B699 /* Assets.xcassets */,
 				266246DB29D71F8B00F8B699 /* Preview Content */,
 			);
@@ -125,7 +190,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				263C38AC29D722F600A8676C /* SF-Pro-Text-Regular.otf in Resources */,
 				266246DD29D71F8B00F8B699 /* Preview Assets.xcassets in Resources */,
+				263C38A729D722D400A8676C /* SF-Mono-Bold.otf in Resources */,
+				263C38A929D722D400A8676C /* SF-Mono-Regular.otf in Resources */,
+				263C38AD29D722F600A8676C /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
+				263C38A829D722D400A8676C /* SF-Mono-Semibold.otf in Resources */,
 				266246DA29D71F8B00F8B699 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,7 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				266246D829D71F8A00F8B699 /* ContentView.swift in Sources */,
+				263C38B029D723D600A8676C /* MainScreenView.swift in Sources */,
 				266246D629D71F8A00F8B699 /* GaskanApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +340,7 @@
 				DEVELOPMENT_TEAM = 2W2FLHT9EF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Gaskan/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +370,7 @@
 				DEVELOPMENT_TEAM = 2W2FLHT9EF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Gaskan/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
