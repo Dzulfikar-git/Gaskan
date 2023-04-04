@@ -35,7 +35,7 @@ struct OnboardingView: View {
                     if selectedTabIndex == 2 {
                         Button("START") {
                             
-                        }.frame(width: 100, height: 50).foregroundColor(.white).background(Color("DarkColor"))
+                        }.frame(width: 100, height: 50).foregroundColor(.white).background(Color("AppSecondary"))
                     } else {
                         Button(action: {
                             withAnimation {
@@ -43,17 +43,21 @@ struct OnboardingView: View {
                             }
                         }) {
                             Image(systemName: "chevron.right").font(.body).foregroundColor(.white).frame(width: 50, height: 50)
-                        }.background(Color("DarkColor")).clipShape(Circle())
+                        }.background(Color("AppSecondary")).clipShape(Circle())
                     }
                     
                 }.padding(.horizontal, 48)
             
             Spacer().padding(16).fixedSize()
             
-        }.background(Image("Noise")) // Noise Image
-        .background(Image("Path-2").offset(y: -100)) // Path Image
-            .background(Image("Gradient-onboard").offset(y: -100)) // Gradient Image
-            .background(Color("BackgroundColor")) // Background Color
+        }.background(Image("BackgroundNoise").resizable()
+            .aspectRatio(contentMode: .fill)
+            .blendMode(.multiply)
+            .opacity(0.05) // adjust the opacity of the noise texture
+            .ignoresSafeArea()) // Noise Image
+        .background(Image("BackgroundPath-2").offset(y: -100)) // Path Image
+            .background(Image("BackgroundGradient-2").offset(y: -100)) // Gradient Image
+            .background(Color("AppPrimary")) // Background Color
             .ignoresSafeArea()
     }
 }

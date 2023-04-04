@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingThirdView: View {
     var body: some View {
         VStack {
-            Image("Scooter").padding(.vertical, 48)
+            Image("Onboarding-3-Image").padding(.vertical, 48)
             
             VStack(alignment: .leading) {
                 Text("Prevent Breakdowns").font(.system(size: 24)).fontWeight(.bold).padding(.vertical, 8)
