@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
+    @Binding var isFirstLaunch: Bool
     @State private var selectedTabIndex = 0
     
     var body: some View {
@@ -18,37 +19,68 @@ struct OnboardingView: View {
                     OnboardingSecondView().tag(1)
                     
                     OnboardingThirdView().tag(2)
-                }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .animation(.easeInOut, value: selectedTabIndex)
                 .transition(.slide)
                 
                 HStack {
-                    Circle().foregroundColor(selectedTabIndex == 0 ? Color.yellow : Color.gray).shadow(color: selectedTabIndex == 0 ? .yellow : .clear, radius: 5, x: 0, y: 0).frame(width: 8)
+                    Circle()
+                        .foregroundColor(
+                            selectedTabIndex == 0
+                            ? Color.yellow
+                            : Color.gray)
+                        .shadow(
+                            color: selectedTabIndex == 0
+                            ? .yellow
+                            : .clear, radius: 5, x: 0, y: 0)
+                        .frame(width: 8)
                     
-                    Circle().foregroundColor(selectedTabIndex == 1 ? Color.yellow : Color.gray).shadow(color: selectedTabIndex == 1 ? .yellow : .clear, radius: 5, x: 0, y: 0).frame(width: 8)
+                    Circle()
+                        .foregroundColor(selectedTabIndex == 1 ? Color.yellow : Color.gray)
+                        .shadow(
+                            color: selectedTabIndex == 1
+                            ? .yellow
+                            : .clear, radius: 5, x: 0, y: 0)
+                        .frame(width: 8)
                     
-                    Circle().foregroundColor(selectedTabIndex == 2 ? Color.yellow : Color.gray).shadow(color: selectedTabIndex == 2 ? .yellow : .clear, radius: 5, x: 0, y: 0).frame(width: 8)
+                    Circle()
+                        .foregroundColor(
+                            selectedTabIndex == 2
+                            ? Color.yellow
+                            : Color.gray)
+                        .shadow(
+                            color: selectedTabIndex == 2
+                            ? .yellow
+                            : .clear, radius: 5, x: 0, y: 0)
+                        .frame(width: 8)
                     
                     Spacer()
                     
-                    if selectedTabIndex == 2 {
+                    if selectedTabIndex == 2 { // Reached the last onboarding view
                         Button("START") {
-                            
-                        }.frame(width: 100, height: 50).foregroundColor(.white).background(Color("AppSecondary"))
+                                isFirstLaunch = false
+                        }.frame(width: 100, height: 50)
+                            .foregroundColor(.white)
+                            .background(Color("AppSecondary"))
                     } else {
                         Button(action: {
                             withAnimation {
                                 selectedTabIndex += 1
                             }
                         }) {
-                            Image(systemName: "chevron.right").font(.body).foregroundColor(.white).frame(width: 50, height: 50)
-                        }.background(Color("AppSecondary")).clipShape(Circle())
+                            Image(systemName: "chevron.right")
+                                .font(.body)
+                                .foregroundColor(.white)
+                                .frame(width: 50, height: 50)
+                        }.background(Color("AppSecondary"))
+                            .clipShape(Circle())
                     }
                     
                 }.padding(.horizontal, 48)
             
-            Spacer().padding(16).fixedSize()
+            Spacer()
+                .padding(24)
+                .fixedSize()
             
         }.background(Image("BackgroundNoise").resizable()
             .aspectRatio(contentMode: .fill)
@@ -64,6 +96,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
+        OnboardingView(isFirstLaunch: .constant(true))
     }
 }
