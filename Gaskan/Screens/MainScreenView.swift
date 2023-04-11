@@ -9,8 +9,30 @@
 import SwiftUI
 
 struct MainScreenView: View {
+    @AppStorage("isFirstLaunch") var isFirstLaunch = true
+    @State var showVehicleMileage = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            if isFirstLaunch {
+                OnboardingView(isFirstLaunch: $isFirstLaunch)
+                    .onDisappear {
+                        withAnimation {
+                            showVehicleMileage = true
+                        }
+                    }
+            } else if showVehicleMileage {
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    VehicleMileageScreen()
+                }
+            }
+        }.onAppear {
+            if !isFirstLaunch {
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    showVehicleMileage = true
+                }
+            }
+        }
     }
 }
 
