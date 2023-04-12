@@ -15,6 +15,15 @@
 		26D1B63329E6489E007E6154 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63029E6489E007E6154 /* Font.swift */; };
 		26D1B63429E6489E007E6154 /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63129E6489E007E6154 /* Spacer.swift */; };
 		26D1B63529E6489E007E6154 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63229E6489E007E6154 /* Color.swift */; };
+		26D1B63729E64989007E6154 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63629E64989007E6154 /* OnboardingView.swift */; };
+		26D1B63C29E64990007E6154 /* OnboardingSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63929E64990007E6154 /* OnboardingSecondView.swift */; };
+		26D1B63D29E64990007E6154 /* OnboardingThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63A29E64990007E6154 /* OnboardingThirdView.swift */; };
+		26D1B63E29E64990007E6154 /* OnboardingFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63B29E64990007E6154 /* OnboardingFirstView.swift */; };
+		26D1B64629E64A06007E6154 /* CircleChevronDisclosureStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B64029E64A06007E6154 /* CircleChevronDisclosureStyle.swift */; };
+		26D1B64729E64A06007E6154 /* DistanceSegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B64229E64A06007E6154 /* DistanceSegmentedControlView.swift */; };
+		26D1B64829E64A06007E6154 /* FuelEfficiencySegementedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B64329E64A06007E6154 /* FuelEfficiencySegementedControlView.swift */; };
+		26D1B64929E64A06007E6154 /* CircleIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B64429E64A06007E6154 /* CircleIndicatorView.swift */; };
+		26D1B64A29E64A06007E6154 /* UnitDropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B64529E64A06007E6154 /* UnitDropdownView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +45,15 @@
 		26D1B63029E6489E007E6154 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		26D1B63129E6489E007E6154 /* Spacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
 		26D1B63229E6489E007E6154 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		26D1B63629E64989007E6154 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		26D1B63929E64990007E6154 /* OnboardingSecondView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSecondView.swift; sourceTree = "<group>"; };
+		26D1B63A29E64990007E6154 /* OnboardingThirdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingThirdView.swift; sourceTree = "<group>"; };
+		26D1B63B29E64990007E6154 /* OnboardingFirstView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFirstView.swift; sourceTree = "<group>"; };
+		26D1B64029E64A06007E6154 /* CircleChevronDisclosureStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleChevronDisclosureStyle.swift; sourceTree = "<group>"; };
+		26D1B64229E64A06007E6154 /* DistanceSegmentedControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceSegmentedControlView.swift; sourceTree = "<group>"; };
+		26D1B64329E64A06007E6154 /* FuelEfficiencySegementedControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelEfficiencySegementedControlView.swift; sourceTree = "<group>"; };
+		26D1B64429E64A06007E6154 /* CircleIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleIndicatorView.swift; sourceTree = "<group>"; };
+		26D1B64529E64A06007E6154 /* UnitDropdownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitDropdownView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +70,8 @@
 		263C389E29D7200600A8676C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				26D1B63F29E64A06007E6154 /* CustomStyling */,
+				26D1B64129E64A06007E6154 /* CustomViews */,
 				263C38A329D7203200A8676C /* FuelEfficiency */,
 				263C38A229D7202B00A8676C /* VehicleMileage */,
 				263C38A129D7202500A8676C /* Onboarding */,
@@ -88,6 +108,8 @@
 		263C38A129D7202500A8676C /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				26D1B63829E64990007E6154 /* OnboardingSubScreen */,
+				26D1B63629E64989007E6154 /* OnboardingView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -125,14 +147,14 @@
 		266246D429D71F8A00F8B699 /* Gaskan */ = {
 			isa = PBXGroup;
 			children = (
-				26D1B61529E647FF007E6154 /* Utils */,
-				263C38AE29D7231900A8676C /* Info.plist */,
+				266246D929D71F8B00F8B699 /* Assets.xcassets */,
 				263C38A029D7201500A8676C /* Extensions */,
 				263C389F29D7201000A8676C /* Fonts */,
-				263C389E29D7200600A8676C /* Screens */,
 				266246D529D71F8A00F8B699 /* GaskanApp.swift */,
-				266246D929D71F8B00F8B699 /* Assets.xcassets */,
+				263C38AE29D7231900A8676C /* Info.plist */,
 				266246DB29D71F8B00F8B699 /* Preview Content */,
+				263C389E29D7200600A8676C /* Screens */,
+				26D1B61529E647FF007E6154 /* Utils */,
 			);
 			path = Gaskan;
 			sourceTree = "<group>";
@@ -151,6 +173,35 @@
 				26D1B61629E64815007E6154 /* TextFieldUtil.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		26D1B63829E64990007E6154 /* OnboardingSubScreen */ = {
+			isa = PBXGroup;
+			children = (
+				26D1B63929E64990007E6154 /* OnboardingSecondView.swift */,
+				26D1B63A29E64990007E6154 /* OnboardingThirdView.swift */,
+				26D1B63B29E64990007E6154 /* OnboardingFirstView.swift */,
+			);
+			path = OnboardingSubScreen;
+			sourceTree = "<group>";
+		};
+		26D1B63F29E64A06007E6154 /* CustomStyling */ = {
+			isa = PBXGroup;
+			children = (
+				26D1B64029E64A06007E6154 /* CircleChevronDisclosureStyle.swift */,
+			);
+			path = CustomStyling;
+			sourceTree = "<group>";
+		};
+		26D1B64129E64A06007E6154 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				26D1B64229E64A06007E6154 /* DistanceSegmentedControlView.swift */,
+				26D1B64329E64A06007E6154 /* FuelEfficiencySegementedControlView.swift */,
+				26D1B64429E64A06007E6154 /* CircleIndicatorView.swift */,
+				26D1B64529E64A06007E6154 /* UnitDropdownView.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,12 +274,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26D1B63E29E64990007E6154 /* OnboardingFirstView.swift in Sources */,
 				263C38B029D723D600A8676C /* MainScreenView.swift in Sources */,
 				26D1B63329E6489E007E6154 /* Font.swift in Sources */,
 				26D1B63429E6489E007E6154 /* Spacer.swift in Sources */,
+				26D1B64729E64A06007E6154 /* DistanceSegmentedControlView.swift in Sources */,
+				26D1B64629E64A06007E6154 /* CircleChevronDisclosureStyle.swift in Sources */,
 				266246D629D71F8A00F8B699 /* GaskanApp.swift in Sources */,
 				26D1B61729E64815007E6154 /* TextFieldUtil.swift in Sources */,
+				26D1B63D29E64990007E6154 /* OnboardingThirdView.swift in Sources */,
 				26D1B63529E6489E007E6154 /* Color.swift in Sources */,
+				26D1B64829E64A06007E6154 /* FuelEfficiencySegementedControlView.swift in Sources */,
+				26D1B63729E64989007E6154 /* OnboardingView.swift in Sources */,
+				26D1B64929E64A06007E6154 /* CircleIndicatorView.swift in Sources */,
+				26D1B63C29E64990007E6154 /* OnboardingSecondView.swift in Sources */,
+				26D1B64A29E64A06007E6154 /* UnitDropdownView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
