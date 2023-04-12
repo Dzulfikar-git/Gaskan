@@ -13,9 +13,13 @@ struct OnboardingThirdView: View {
             Image("Onboarding-3-Image").padding(.vertical, 48)
             
             VStack(alignment: .leading) {
-                Text("Prevent Breakdowns").font(.system(size: 24)).fontWeight(.bold).padding(.vertical, 8)
+                Text("Prevent Breakdowns").font(.sfMonoBold(fontSize: 24.0))
+                    .tracking(-1.5)
+                    .padding([.bottom], 8.0)
                 
-                Text("Minimize the possibility of your personal vehicle to breakdown.").padding(.vertical,8)
+                Text("Minimize the possibility of your personal vehicle to breakdown.")
+                    .font(.sfMonoMedium(fontSize: 16.0))
+                    .tracking(-1)
             }.padding(.horizontal, 48)
         }
     }
