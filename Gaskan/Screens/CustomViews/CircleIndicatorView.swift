@@ -13,11 +13,13 @@ struct CircleIndicatorView: View {
     var body: some View {
         if tag == selectedTag {
             Circle()
-                .shadow(color: Color.yellow, radius: 5.0)
+                .shadow(color: .pageIndexViewIndicatorColor, radius: 5.0)
                 .frame(width: 8.0)
                 .foregroundColor(.pageIndexViewIndicatorColor)
         } else {
             Circle()
+                .frame(width: 8.0)
+                .foregroundColor(.pageIndexViewIndicatorColor)
         }
     }
 }

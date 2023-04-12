@@ -8,59 +8,38 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @AppStorage("isFirstLaunch") var isFirstLaunch = true
     @State private var selectedTabIndex = 0
-    @Binding var path: NavigationPath
+    
+    var onFinish: (Bool) -> Void
+    
+    private func indicatorCircle(for index: Int) -> some View {
+        Circle()
+            .foregroundColor(selectedTabIndex == index ? Color.yellow : Color.gray)
+            .shadow(color: selectedTabIndex == index ? .yellow : .clear, radius: 5, x: 0, y: 0)
+            .frame(width: 8)
+    }
     
     var body: some View {
         VStack {
             TabView(selection: $selectedTabIndex) {
                 OnboardingFirstView().tag(0)
-                
                 OnboardingSecondView().tag(1)
-                
                 OnboardingThirdView().tag(2)
-            }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .animation(.easeInOut, value: selectedTabIndex)
-                .transition(.slide)
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .animation(.easeInOut, value: selectedTabIndex)
+            .transition(.slide)
             
             HStack {
-                Circle()
-                    .foregroundColor(
-                        selectedTabIndex == 0
-                        ? Color.yellow
-                        : Color.gray)
-                    .shadow(
-                        color: selectedTabIndex == 0
-                        ? .yellow
-                        : .clear, radius: 5, x: 0, y: 0)
-                    .frame(width: 8)
-                
-                Circle()
-                    .foregroundColor(selectedTabIndex == 1 ? Color.yellow : Color.gray)
-                    .shadow(
-                        color: selectedTabIndex == 1
-                        ? .yellow
-                        : .clear, radius: 5, x: 0, y: 0)
-                    .frame(width: 8)
-                
-                Circle()
-                    .foregroundColor(
-                        selectedTabIndex == 2
-                        ? Color.yellow
-                        : Color.gray)
-                    .shadow(
-                        color: selectedTabIndex == 2
-                        ? .yellow
-                        : .clear, radius: 5, x: 0, y: 0)
-                    .frame(width: 8)
+                ForEach(0..<3, id: \.self) { index in
+                    CircleIndicatorView(tag: index, selectedTag: $selectedTabIndex)
+                }
                 
                 Spacer()
                 
                 if selectedTabIndex == 2 { // Reached the last onboarding view
                     Button("START") {
-                        isFirstLaunch = false
-                        path.removeLast(path.count)
+                        onFinish(true)
                     }
                     .font(.sfMonoBold(fontSize: 16.0))
                     .tracking(0.8)
@@ -102,6 +81,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(path: .constant(.init()))
+        OnboardingView(onFinish: { value in print(value) })
     }
 }
