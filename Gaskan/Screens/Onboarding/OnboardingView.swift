@@ -61,9 +61,12 @@ struct OnboardingView: View {
                     Button("START") {
                         isFirstLaunch = false
                         path.removeLast(path.count)
-                    }.frame(width: 100, height: 50)
-                        .foregroundColor(.white)
-                        .background(Color("AppSecondary"))
+                    }
+                    .font(.sfMonoBold(fontSize: 16.0))
+                    .tracking(0.8)
+                    .frame(width: 100, height: 50)
+                    .foregroundColor(.white)
+                    .background(Color("AppSecondary"))
                 } else {
                     Button(action: {
                         withAnimation {
@@ -73,6 +76,7 @@ struct OnboardingView: View {
                         Image(systemName: "chevron.right")
                             .font(.body)
                             .foregroundColor(.white)
+                            .fontWeight(.bold)
                             .frame(width: 50, height: 50)
                     }.background(Color("AppSecondary"))
                         .clipShape(Circle())
