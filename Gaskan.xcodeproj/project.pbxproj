@@ -7,29 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		263C38A729D722D400A8676C /* SF-Mono-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 263C38A429D722D400A8676C /* SF-Mono-Bold.otf */; };
-		263C38A829D722D400A8676C /* SF-Mono-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 263C38A529D722D400A8676C /* SF-Mono-Semibold.otf */; };
-		263C38A929D722D400A8676C /* SF-Mono-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 263C38A629D722D400A8676C /* SF-Mono-Regular.otf */; };
-		263C38AC29D722F600A8676C /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 263C38AA29D722F600A8676C /* SF-Pro-Text-Regular.otf */; };
-		263C38AD29D722F600A8676C /* SF-Pro-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 263C38AB29D722F600A8676C /* SF-Pro-Text-SemiboldItalic.otf */; };
 		263C38B029D723D600A8676C /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C38AF29D723D600A8676C /* MainScreenView.swift */; };
 		266246D629D71F8A00F8B699 /* GaskanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266246D529D71F8A00F8B699 /* GaskanApp.swift */; };
 		266246DA29D71F8B00F8B699 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266246D929D71F8B00F8B699 /* Assets.xcassets */; };
 		266246DD29D71F8B00F8B699 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266246DC29D71F8B00F8B699 /* Preview Assets.xcassets */; };
+		26D1B61729E64815007E6154 /* TextFieldUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B61629E64815007E6154 /* TextFieldUtil.swift */; };
+		26D1B63329E6489E007E6154 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63029E6489E007E6154 /* Font.swift */; };
+		26D1B63429E6489E007E6154 /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63129E6489E007E6154 /* Spacer.swift */; };
+		26D1B63529E6489E007E6154 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63229E6489E007E6154 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		263C38A429D722D400A8676C /* SF-Mono-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Bold.otf"; sourceTree = "<group>"; };
-		263C38A529D722D400A8676C /* SF-Mono-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Semibold.otf"; sourceTree = "<group>"; };
-		263C38A629D722D400A8676C /* SF-Mono-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Regular.otf"; sourceTree = "<group>"; };
-		263C38AA29D722F600A8676C /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
-		263C38AB29D722F600A8676C /* SF-Pro-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
 		263C38AE29D7231900A8676C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		263C38AF29D723D600A8676C /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		266246D229D71F8A00F8B699 /* Gaskan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gaskan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		266246D529D71F8A00F8B699 /* GaskanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaskanApp.swift; sourceTree = "<group>"; };
 		266246D929D71F8B00F8B699 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		266246DC29D71F8B00F8B699 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		26D1B61629E64815007E6154 /* TextFieldUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldUtil.swift; sourceTree = "<group>"; };
+		26D1B62829E6488D007E6154 /* SF-Mono-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Medium.otf"; sourceTree = "<group>"; };
+		26D1B62929E6488D007E6154 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		26D1B62A29E6488D007E6154 /* SF-Mono-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Light.otf"; sourceTree = "<group>"; };
+		26D1B62B29E6488E007E6154 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		26D1B62C29E6488E007E6154 /* SF-Mono-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Regular.otf"; sourceTree = "<group>"; };
+		26D1B62D29E6488E007E6154 /* SF-Mono-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Bold.otf"; sourceTree = "<group>"; };
+		26D1B62E29E6488E007E6154 /* SF-Mono-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Semibold.otf"; sourceTree = "<group>"; };
+		26D1B62F29E6488E007E6154 /* SF-Pro-Text-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-SemiboldItalic.otf"; sourceTree = "<group>"; };
+		26D1B63029E6489E007E6154 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		26D1B63129E6489E007E6154 /* Spacer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
+		26D1B63229E6489E007E6154 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,11 +63,14 @@
 		263C389F29D7201000A8676C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				263C38A429D722D400A8676C /* SF-Mono-Bold.otf */,
-				263C38A629D722D400A8676C /* SF-Mono-Regular.otf */,
-				263C38AA29D722F600A8676C /* SF-Pro-Text-Regular.otf */,
-				263C38AB29D722F600A8676C /* SF-Pro-Text-SemiboldItalic.otf */,
-				263C38A529D722D400A8676C /* SF-Mono-Semibold.otf */,
+				26D1B62D29E6488E007E6154 /* SF-Mono-Bold.otf */,
+				26D1B62A29E6488D007E6154 /* SF-Mono-Light.otf */,
+				26D1B62829E6488D007E6154 /* SF-Mono-Medium.otf */,
+				26D1B62C29E6488E007E6154 /* SF-Mono-Regular.otf */,
+				26D1B62E29E6488E007E6154 /* SF-Mono-Semibold.otf */,
+				26D1B62929E6488D007E6154 /* SF-Pro-Text-Regular.otf */,
+				26D1B62B29E6488E007E6154 /* SF-Pro-Text-Semibold.otf */,
+				26D1B62F29E6488E007E6154 /* SF-Pro-Text-SemiboldItalic.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -69,6 +78,9 @@
 		263C38A029D7201500A8676C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				26D1B63229E6489E007E6154 /* Color.swift */,
+				26D1B63029E6489E007E6154 /* Font.swift */,
+				26D1B63129E6489E007E6154 /* Spacer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -113,6 +125,7 @@
 		266246D429D71F8A00F8B699 /* Gaskan */ = {
 			isa = PBXGroup;
 			children = (
+				26D1B61529E647FF007E6154 /* Utils */,
 				263C38AE29D7231900A8676C /* Info.plist */,
 				263C38A029D7201500A8676C /* Extensions */,
 				263C389F29D7201000A8676C /* Fonts */,
@@ -130,6 +143,14 @@
 				266246DC29D71F8B00F8B699 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		26D1B61529E647FF007E6154 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				26D1B61629E64815007E6154 /* TextFieldUtil.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,12 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				263C38AC29D722F600A8676C /* SF-Pro-Text-Regular.otf in Resources */,
 				266246DD29D71F8B00F8B699 /* Preview Assets.xcassets in Resources */,
-				263C38A729D722D400A8676C /* SF-Mono-Bold.otf in Resources */,
-				263C38A929D722D400A8676C /* SF-Mono-Regular.otf in Resources */,
-				263C38AD29D722F600A8676C /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
-				263C38A829D722D400A8676C /* SF-Mono-Semibold.otf in Resources */,
 				266246DA29D71F8B00F8B699 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,7 +224,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				263C38B029D723D600A8676C /* MainScreenView.swift in Sources */,
+				26D1B63329E6489E007E6154 /* Font.swift in Sources */,
+				26D1B63429E6489E007E6154 /* Spacer.swift in Sources */,
 				266246D629D71F8A00F8B699 /* GaskanApp.swift in Sources */,
+				26D1B61729E64815007E6154 /* TextFieldUtil.swift in Sources */,
+				26D1B63529E6489E007E6154 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
