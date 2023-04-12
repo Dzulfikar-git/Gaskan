@@ -286,7 +286,7 @@ struct VehicleMileageScreenView: View {
             VehicleMileageResultScreenView(totalMileage: $totalMileage, selectedUnit: $selectedOption)
         }
         .navigationDestination(for: FuelEfficiencyRoutingPath.self, destination: { _ in
-//            FuelEfficiencyScreenView(path: $path, fuelEfficiencyValue: $fuelEfficiencyForm, selectedOption: $selectedOption)
+            FuelEfficiencyScreenView(path: $path, fuelEfficiencyValue: $fuelEfficiencyForm, selectedOption: $selectedOption)
         })
         .navigationBarTitleDisplayMode(.inline)
         .padding([.horizontal], 16.0)
