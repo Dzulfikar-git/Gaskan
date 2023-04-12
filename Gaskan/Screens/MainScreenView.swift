@@ -11,11 +11,12 @@ import SwiftUI
 struct MainScreenView: View {
     @AppStorage("isFirstLaunch") var isFirstLaunch = true
     @State var showVehicleMileage = false
+    @State private var path: NavigationPath = .init()
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             if isFirstLaunch {
-                OnboardingView(isFirstLaunch: $isFirstLaunch)
+                OnboardingView(path: $path)
                     .onDisappear {
                         withAnimation {
                             showVehicleMileage = true
@@ -23,7 +24,7 @@ struct MainScreenView: View {
                     }
             } else if showVehicleMileage {
                 withAnimation(.easeInOut(duration: 0.5)) {
-                    VehicleMileageScreen()
+                    VehicleMileageScreenView(path: $path)
                 }
             }
         }.onAppear {
