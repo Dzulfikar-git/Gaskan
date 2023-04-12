@@ -37,6 +37,8 @@
 		26D1B65E29E650B5007E6154 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26D1B62929E6488D007E6154 /* SF-Pro-Text-Regular.otf */; };
 		26D1B65F29E650B5007E6154 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26D1B62B29E6488E007E6154 /* SF-Pro-Text-Semibold.otf */; };
 		26D1B66029E650B5007E6154 /* SF-Pro-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26D1B62F29E6488E007E6154 /* SF-Pro-Text-SemiboldItalic.otf */; };
+		26D1B66329E65A3D007E6154 /* FuelEfficiencyResultScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B66129E65A3D007E6154 /* FuelEfficiencyResultScreenView.swift */; };
+		26D1B66429E65A3D007E6154 /* FuelEfficiencyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B66229E65A3D007E6154 /* FuelEfficiencyScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		26D1B65029E64B08007E6154 /* UnitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitData.swift; sourceTree = "<group>"; };
 		26D1B65329E64B81007E6154 /* FuelEfficiencyRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyRouting.swift; sourceTree = "<group>"; };
 		26D1B65429E64B81007E6154 /* VehicleMileageRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleMileageRouting.swift; sourceTree = "<group>"; };
+		26D1B66129E65A3D007E6154 /* FuelEfficiencyResultScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyResultScreenView.swift; sourceTree = "<group>"; };
+		26D1B66229E65A3D007E6154 /* FuelEfficiencyScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,8 @@
 		263C38A329D7203200A8676C /* FuelEfficiency */ = {
 			isa = PBXGroup;
 			children = (
+				26D1B66129E65A3D007E6154 /* FuelEfficiencyResultScreenView.swift */,
+				26D1B66229E65A3D007E6154 /* FuelEfficiencyScreenView.swift */,
 			);
 			path = FuelEfficiency;
 			sourceTree = "<group>";
@@ -327,6 +333,8 @@
 				26D1B64E29E64A84007E6154 /* VehicleMileageScreenView.swift in Sources */,
 				26D1B63429E6489E007E6154 /* Spacer.swift in Sources */,
 				26D1B64729E64A06007E6154 /* DistanceSegmentedControlView.swift in Sources */,
+				26D1B66329E65A3D007E6154 /* FuelEfficiencyResultScreenView.swift in Sources */,
+				26D1B66429E65A3D007E6154 /* FuelEfficiencyScreenView.swift in Sources */,
 				26D1B64629E64A06007E6154 /* CircleChevronDisclosureStyle.swift in Sources */,
 				266246D629D71F8A00F8B699 /* GaskanApp.swift in Sources */,
 				26D1B61729E64815007E6154 /* TextFieldUtil.swift in Sources */,
