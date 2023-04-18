@@ -19,7 +19,7 @@ struct CircleIndicatorView: View {
         } else {
             Circle()
                 .frame(width: 8.0)
-                .foregroundColor(.pageIndexViewIndicatorColor)
+                .foregroundColor(.gray)
         }
     }
 }

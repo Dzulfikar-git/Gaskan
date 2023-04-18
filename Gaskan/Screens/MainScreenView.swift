@@ -9,27 +9,21 @@
 import SwiftUI
 
 struct MainScreenView: View {
-    @AppStorage("isFirstLaunch") private var isFirstLaunch = true
-    @State private var showDashboard = true
     @State private var path: NavigationPath = .init()
+    @AppStorage("isFirstLaunch") private var isFirstLaunch = true
+    @State var isShowDashboard = false
     
     var body: some View {
         NavigationStack(path: $path) {
-            if showDashboard {
-                OnboardingView(onFinish: { _ in
-                    withAnimation(.easeInOut(duration: 0.5)) {
+            if isFirstLaunch && !isShowDashboard {
+                OnboardingView(onFinish: {
+                    withAnimation {
                         isFirstLaunch = false
-                        showDashboard = false
-                    
-                        path.removeLast(path.count)
+                        isShowDashboard = true
                     }
-                }).onAppear {
-                    if !isFirstLaunch {
-                        showDashboard = false
-                    }
-                }
+                })
             } else {
-                VehicleMileageScreenView(path: $path)
+                DashboardView(path: $path)             
             }
         }
     }
@@ -37,6 +31,6 @@ struct MainScreenView: View {
 
 struct MainScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreenView()
+        MainScreenView()                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

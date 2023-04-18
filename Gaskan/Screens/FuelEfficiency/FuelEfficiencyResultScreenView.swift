@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FuelEfficiencyResultScreenView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @Binding var path: NavigationPath
     @Binding var fuelEfficiencyValue: String
     @Binding var selectedUnit: UnitDropdownOption?
@@ -76,7 +78,7 @@ struct FuelEfficiencyResultScreenView: View {
             Spacer()
             
             Button {
-                path.removeLast(path.count)
+                path.removeLast(1)
             } label: {
                 Text("USE THIS RESULT TO CALCULATE VEHICLE MILEAGE")
                     .frame(maxWidth: .infinity)

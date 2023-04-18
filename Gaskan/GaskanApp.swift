@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct GaskanApp: App {
+    let persistenceController = PersistenceController.shared
+    @State private var path: NavigationPath = .init()
+    
     var body: some Scene {
         WindowGroup {
+//            DashboardView(path: $path)
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//            ContentView()
             MainScreenView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

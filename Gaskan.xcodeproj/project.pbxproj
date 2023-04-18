@@ -39,6 +39,18 @@
 		26D1B66029E650B5007E6154 /* SF-Pro-Text-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26D1B62F29E6488E007E6154 /* SF-Pro-Text-SemiboldItalic.otf */; };
 		26D1B66329E65A3D007E6154 /* FuelEfficiencyResultScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B66129E65A3D007E6154 /* FuelEfficiencyResultScreenView.swift */; };
 		26D1B66429E65A3D007E6154 /* FuelEfficiencyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B66229E65A3D007E6154 /* FuelEfficiencyScreenView.swift */; };
+		6C38612D29E65FED00A471CD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38612C29E65FED00A471CD /* CardView.swift */; };
+		6C38613029E6604E00A471CD /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38612F29E6604E00A471CD /* DashboardView.swift */; };
+		6C38613229E66EE000A471CD /* ChildCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38613129E66EE000A471CD /* ChildCardView.swift */; };
+		6C38613429EA600600A471CD /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38613329EA600600A471CD /* HistoryView.swift */; };
+		6C38613629EA68BB00A471CD /* CalculationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38613529EA68BB00A471CD /* CalculationType.swift */; };
+		6C38613829EA79ED00A471CD /* CustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38613729EA79ED00A471CD /* CustomScrollView.swift */; };
+		6C38614029EBBB5300A471CD /* RefuelScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38613F29EBBB5300A471CD /* RefuelScreenView.swift */; };
+		6C38614229EBBC1800A471CD /* RefuelRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38614129EBBC1800A471CD /* RefuelRouting.swift */; };
+		6C38614529EBC0C100A471CD /* NewTripScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38614429EBC0C100A471CD /* NewTripScreenView.swift */; };
+		6C38616729EBE9DF00A471CD /* Gaskan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C38616529EBE9DF00A471CD /* Gaskan.xcdatamodeld */; };
+		6C38616929EBEADC00A471CD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38616829EBEADC00A471CD /* Persistence.swift */; };
+		6C38617029EC299A00A471CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38616F29EC299A00A471CD /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +88,19 @@
 		26D1B65429E64B81007E6154 /* VehicleMileageRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleMileageRouting.swift; sourceTree = "<group>"; };
 		26D1B66129E65A3D007E6154 /* FuelEfficiencyResultScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyResultScreenView.swift; sourceTree = "<group>"; };
 		26D1B66229E65A3D007E6154 /* FuelEfficiencyScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyScreenView.swift; sourceTree = "<group>"; };
+		6C38612C29E65FED00A471CD /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		6C38612F29E6604E00A471CD /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		6C38613129E66EE000A471CD /* ChildCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildCardView.swift; sourceTree = "<group>"; };
+		6C38613329EA600600A471CD /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		6C38613529EA68BB00A471CD /* CalculationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationType.swift; sourceTree = "<group>"; };
+		6C38613729EA79ED00A471CD /* CustomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScrollView.swift; sourceTree = "<group>"; };
+		6C38613F29EBBB5300A471CD /* RefuelScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelScreenView.swift; sourceTree = "<group>"; };
+		6C38614129EBBC1800A471CD /* RefuelRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelRouting.swift; sourceTree = "<group>"; };
+		6C38614429EBC0C100A471CD /* NewTripScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripScreenView.swift; sourceTree = "<group>"; };
+		6C38616629EBE9DF00A471CD /* CoreDataTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTest.xcdatamodel; sourceTree = "<group>"; };
+		6C38616829EBEADC00A471CD /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		6C38616D29EC0E0700A471CD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6C38616F29EC299A00A471CD /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +117,9 @@
 		263C389E29D7200600A8676C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				6C38614329EBC0B100A471CD /* NewTrip */,
+				6C38613E29EBBB4000A471CD /* Refuel */,
+				6C38612E29E6603800A471CD /* Dashboard */,
 				26D1B63F29E64A06007E6154 /* CustomStyling */,
 				26D1B64129E64A06007E6154 /* CustomViews */,
 				263C38A329D7203200A8676C /* FuelEfficiency */,
@@ -159,6 +187,7 @@
 			children = (
 				266246D429D71F8A00F8B699 /* Gaskan */,
 				266246D329D71F8A00F8B699 /* Products */,
+				6C38616C29EC0E0700A471CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +208,8 @@
 				263C38A029D7201500A8676C /* Extensions */,
 				263C389F29D7201000A8676C /* Fonts */,
 				266246D529D71F8A00F8B699 /* GaskanApp.swift */,
+				6C38616F29EC299A00A471CD /* ContentView.swift */,
+				6C38616529EBE9DF00A471CD /* Gaskan.xcdatamodeld */,
 				263C38AE29D7231900A8676C /* Info.plist */,
 				266246DB29D71F8B00F8B699 /* Preview Content */,
 				263C389E29D7200600A8676C /* Screens */,
@@ -224,10 +255,14 @@
 		26D1B64129E64A06007E6154 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				6C38613729EA79ED00A471CD /* CustomScrollView.swift */,
+				6C38612C29E65FED00A471CD /* CardView.swift */,
+				6C38613129E66EE000A471CD /* ChildCardView.swift */,
 				26D1B64229E64A06007E6154 /* DistanceSegmentedControlView.swift */,
 				26D1B64329E64A06007E6154 /* FuelEfficiencySegementedControlView.swift */,
 				26D1B64429E64A06007E6154 /* CircleIndicatorView.swift */,
 				26D1B64529E64A06007E6154 /* UnitDropdownView.swift */,
+				6C38613329EA600600A471CD /* HistoryView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -235,7 +270,9 @@
 		26D1B64F29E64AF8007E6154 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				6C38616829EBEADC00A471CD /* Persistence.swift */,
 				26D1B65029E64B08007E6154 /* UnitData.swift */,
+				6C38613529EA68BB00A471CD /* CalculationType.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -245,8 +282,41 @@
 			children = (
 				26D1B65329E64B81007E6154 /* FuelEfficiencyRouting.swift */,
 				26D1B65429E64B81007E6154 /* VehicleMileageRouting.swift */,
+				6C38614129EBBC1800A471CD /* RefuelRouting.swift */,
 			);
 			path = Routing;
+			sourceTree = "<group>";
+		};
+		6C38612E29E6603800A471CD /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				6C38612F29E6604E00A471CD /* DashboardView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		6C38613E29EBBB4000A471CD /* Refuel */ = {
+			isa = PBXGroup;
+			children = (
+				6C38613F29EBBB5300A471CD /* RefuelScreenView.swift */,
+			);
+			path = Refuel;
+			sourceTree = "<group>";
+		};
+		6C38614329EBC0B100A471CD /* NewTrip */ = {
+			isa = PBXGroup;
+			children = (
+				6C38614429EBC0C100A471CD /* NewTripScreenView.swift */,
+			);
+			path = NewTrip;
+			sourceTree = "<group>";
+		};
+		6C38616C29EC0E0700A471CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C38616D29EC0E0700A471CD /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,8 +397,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C38616929EBEADC00A471CD /* Persistence.swift in Sources */,
 				26D1B63E29E64990007E6154 /* OnboardingFirstView.swift in Sources */,
+				6C38613029E6604E00A471CD /* DashboardView.swift in Sources */,
+				6C38613629EA68BB00A471CD /* CalculationType.swift in Sources */,
 				263C38B029D723D600A8676C /* MainScreenView.swift in Sources */,
+				6C38613229E66EE000A471CD /* ChildCardView.swift in Sources */,
+				6C38614029EBBB5300A471CD /* RefuelScreenView.swift in Sources */,
 				26D1B63329E6489E007E6154 /* Font.swift in Sources */,
 				26D1B64E29E64A84007E6154 /* VehicleMileageScreenView.swift in Sources */,
 				26D1B63429E6489E007E6154 /* Spacer.swift in Sources */,
@@ -338,13 +413,20 @@
 				26D1B64629E64A06007E6154 /* CircleChevronDisclosureStyle.swift in Sources */,
 				266246D629D71F8A00F8B699 /* GaskanApp.swift in Sources */,
 				26D1B61729E64815007E6154 /* TextFieldUtil.swift in Sources */,
+				6C38614529EBC0C100A471CD /* NewTripScreenView.swift in Sources */,
 				26D1B63D29E64990007E6154 /* OnboardingThirdView.swift in Sources */,
 				26D1B65629E64B81007E6154 /* VehicleMileageRouting.swift in Sources */,
+				6C38613429EA600600A471CD /* HistoryView.swift in Sources */,
 				26D1B63529E6489E007E6154 /* Color.swift in Sources */,
+				6C38616729EBE9DF00A471CD /* Gaskan.xcdatamodeld in Sources */,
 				26D1B65129E64B08007E6154 /* UnitData.swift in Sources */,
+				6C38613829EA79ED00A471CD /* CustomScrollView.swift in Sources */,
+				6C38617029EC299A00A471CD /* ContentView.swift in Sources */,
 				26D1B64829E64A06007E6154 /* FuelEfficiencySegementedControlView.swift in Sources */,
 				26D1B63729E64989007E6154 /* OnboardingView.swift in Sources */,
 				26D1B64929E64A06007E6154 /* CircleIndicatorView.swift in Sources */,
+				6C38612D29E65FED00A471CD /* CardView.swift in Sources */,
+				6C38614229EBBC1800A471CD /* RefuelRouting.swift in Sources */,
 				26D1B65529E64B81007E6154 /* FuelEfficiencyRouting.swift in Sources */,
 				26D1B64D29E64A84007E6154 /* VehicleMileageResultScreenView.swift in Sources */,
 				26D1B63C29E64990007E6154 /* OnboardingSecondView.swift in Sources */,
@@ -477,7 +559,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gaskan/Preview Content\"";
-				DEVELOPMENT_TEAM = 2W2FLHT9EF;
+				DEVELOPMENT_TEAM = 57DDT5D7L5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Gaskan/Info.plist;
@@ -507,7 +589,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gaskan/Preview Content\"";
-				DEVELOPMENT_TEAM = 2W2FLHT9EF;
+				DEVELOPMENT_TEAM = 57DDT5D7L5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Gaskan/Info.plist;
@@ -551,6 +633,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6C38616529EBE9DF00A471CD /* Gaskan.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6C38616629EBE9DF00A471CD /* CoreDataTest.xcdatamodel */,
+			);
+			currentVersion = 6C38616629EBE9DF00A471CD /* CoreDataTest.xcdatamodel */;
+			path = Gaskan.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 266246CA29D71F8A00F8B699 /* Project object */;
 }

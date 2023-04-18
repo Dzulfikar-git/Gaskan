@@ -10,6 +10,10 @@ struct FuelEfficiencyRoutingPath: Hashable {
     let id: UUID = UUID()
 }
 
+struct NewTripRoutingPath: Hashable {
+    let id: UUID = UUID()
+}
+
 struct FuelEfficiencyResultRoutingPath: Hashable {
     let id: UUID = UUID()
 }

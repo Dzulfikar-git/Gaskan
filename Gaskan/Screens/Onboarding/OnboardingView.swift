@@ -10,14 +10,8 @@ import SwiftUI
 struct OnboardingView: View {
     @State private var selectedTabIndex = 0
     
-    var onFinish: (Bool) -> Void
-    
-    private func indicatorCircle(for index: Int) -> some View {
-        Circle()
-            .foregroundColor(selectedTabIndex == index ? Color.yellow : Color.gray)
-            .shadow(color: selectedTabIndex == index ? .yellow : .clear, radius: 5, x: 0, y: 0)
-            .frame(width: 8)
-    }
+    @Environment(\.presentationMode) var presentationMode
+    let onFinish: () -> Void
     
     var body: some View {
         VStack {
@@ -39,7 +33,7 @@ struct OnboardingView: View {
                 
                 if selectedTabIndex == 2 { // Reached the last onboarding view
                     Button("START") {
-                        onFinish(true)
+                        onFinish()
                     }
                     .font(.sfMonoBold(fontSize: 16.0))
                     .tracking(0.8)
@@ -81,6 +75,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(onFinish: { value in print(value) })
+        OnboardingView(onFinish: {})
     }
 }

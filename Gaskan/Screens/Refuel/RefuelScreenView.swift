@@ -1,13 +1,15 @@
 //
-//  VehicleMileageScreenView.swift
+//  RefuelScreenView.swift
 //  Gaskan
 //
-//  Created by Dzulfikar on 31/03/23.
+//  Created by Muhammad Adha Fajri Jonison on 16/04/23.
 //
 
 import SwiftUI
 
-struct VehicleMileageScreenView: View {
+struct RefuelScreenView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    
     @Binding var path: NavigationPath
     
     // STATE START: dropdown state
@@ -16,7 +18,7 @@ struct VehicleMileageScreenView: View {
     // STATE END: dropdown state
     
     // STATE START: unit selection state
-    @State private var selectedOption: UnitDropdownOption? = UnitData.metricOption
+    @Binding var selectedOption: UnitDropdownOption?
     // STATE END: unit selection state
     
     // STATE START: fuel efficiency form state
@@ -76,7 +78,7 @@ struct VehicleMileageScreenView: View {
      * it will check the value of fuel efficiency and fuelin form,
      * if both form is empty, it will do nothing.
      * it not, then it will calculate by formula `total mileage = fuel efficiency * fuel in`
-     * then change state of calculate button pressed to be true in order to navigate * screen to vehicle mileage result
+     * then change state of calculate button pressed to be true in order to navigate * screen to dashboard
      **/
     private func handleCalculate() {
         if fuelEfficiencyForm.isEmpty {
@@ -90,8 +92,30 @@ struct VehicleMileageScreenView: View {
         if !fuelEfficiencyForm.isEmpty && !fuelInForm.isEmpty {
             totalMileage = ((Double(fuelEfficiencyForm) ?? 0) * (Double(fuelInForm) ?? 0)).rounded(.toNearestOrAwayFromZero)
             isCalculateButtonPressed = true
-            
-            path.append(VehicleMileageResultRoutingPath())
+            addItem()
+            path.removeLast(path.count)
+        }
+    }
+    
+    private func addItem() {
+        withAnimation {
+            let newItem = Item(context: viewContext)
+            newItem.id = UUID()
+            newItem.type = CalculationType.refuel.rawValue
+            newItem.timestamp = Date()
+            newItem.totalMileage = Float(totalMileage)
+            newItem.fuelEfficiency = Float(fuelEfficiencyForm) ?? 0.0
+            newItem.totalFuelCost = (Float(fuelInForm) ?? 0.0) * (Float(fuelCostPerUnitForm) ?? 0.0)
+            newItem.unit = selectedOption?.value
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
         }
     }
     
@@ -110,28 +134,6 @@ struct VehicleMileageScreenView: View {
                     Spacer()
                         .frame(idealHeight: 24.0)
                         .fixedSize()
-                    // CONTENT-START: Choose Unit
-                    Group {
-                        Text("Choose Unit")
-                            .font(.sfMonoRegular(fontSize: 15))
-                            .tracking(-1.32)
-                            .foregroundColor(.appTertiaryColor)
-                        
-                        UnitDropdownView(shouldShowDropdown: $shouldShowDropdown,
-                                         selectedOption: $selectedOption,
-                                         placeholder: "Unit",
-                                         options: UnitData.unitOptions,
-                                         onOptionSelected: { option in
-                            fuelEfficiencyForm = ""
-                        }, isExpandingState: { isExpanding in
-                            if isExpanding {
-                                handleFinishEditing()
-                            } else {
-                                shouldShowDropdown = false
-                            }
-                        })
-                    }
-                    // CONTENT-END: Choose Unit
                     
                     // CONTENT-START: Fuel Efficiency
                     Group {
@@ -267,7 +269,7 @@ struct VehicleMileageScreenView: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .principal, content: {
-                        Text("Vehicle Mileage Calculator")
+                        Text("Refuel Calculator")
                             .font(.sfMonoSemibold(fontSize: 17.0))
                             .tracking(-1.5)
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -282,16 +284,6 @@ struct VehicleMileageScreenView: View {
                 .frame(width: geometry.size.width, height: geometry.size.height)
             }
             .scrollDisabled(geometry.size.height > 700 ? true : false)
-        }
-        .navigationDestination(for: VehicleMileageResultRoutingPath.self) { _ in
-            VehicleMileageResultScreenView(
-                path: $path,
-                totalMileage: $totalMileage,
-                fuelEfficiency: $fuelEfficiencyForm,
-                fuelIn: $fuelInForm,
-                fuelCostPerUnit: $fuelCostPerUnitForm,
-                selectedUnit: $selectedOption
-            )
         }
         .navigationDestination(for: FuelEfficiencyRoutingPath.self, destination: { _ in
             FuelEfficiencyScreenView(path: $path, fuelEfficiencyValue: $fuelEfficiencyForm, selectedOption: $selectedOption)
@@ -326,15 +318,16 @@ struct VehicleMileageScreenView: View {
     }
 }
 
-struct VehicleMileageScreenView_Previews: PreviewProvider {
-    struct VehicleMileageScreenPreviewer: View {
+struct RefuelScreenView_Previews: PreviewProvider {
+    struct RefuelScreenPreviewer: View {
         @State private var path = NavigationPath()
+        @State private var selectedOption: UnitDropdownOption? = UnitData.metricOption
         var body: some View {
-            VehicleMileageScreenView(path: $path)
+            RefuelScreenView(path: $path, selectedOption: $selectedOption)
         }
     }
     
     static var previews: some View {
-        VehicleMileageScreenPreviewer()
+        RefuelScreenPreviewer()
     }
 }

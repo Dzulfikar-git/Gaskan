@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-struct FuelEfficiencyScreenView: View {
+struct NewTripScreenView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    
     // STATE START: navigation path routing state
     @Binding var path: NavigationPath
     // STATE END: navigation routing state
     
     // STATE START: fuel efficiency value
-    @Binding var fuelEfficiencyValue: String
+    @State private var fuelEfficiencyValue: String = "0.0"
     // STATE END: fuel efficiency value
     
     // STATE START: dropdown state
@@ -50,26 +52,6 @@ struct FuelEfficiencyScreenView: View {
     @FocusState private var isOdometerEndFormFocused: Bool
     // STATE END: odometer start form state
     
-    // STATE START: fuel consumed form state
-    @State private var fuelConsumedForm: String = ""
-    @State private var isFuelConsumedFormErrorInput: Bool = false
-    @State private var fuelConsumedFormErrorMessage: String = ""
-    @FocusState private var isFuelConsumedFormFocused: Bool
-    // STATE END: fuel consumed form state
-    
-    // STATE START: calculate button state
-    @State private var isCalculatedButtonPressed: Bool = false
-    // END START: calculate button state
-    
-    // function for handling finish editing false.
-    // it will set the form focused to `false` so it will stop edit in all textfield
-    private func handleFinishEditing() {
-        isDistanceFormFocused = false
-        isOdometerStartFormFocused = false
-        isOdometerEndFormFocused = false
-        isFuelConsumedFormFocused = false
-    }
-    
     /** Function to handle empty form validaton
      *  @param `formInputErrorState` for form input error state binding
      *  @param `formInputErrorMessageState` for error message
@@ -85,6 +67,14 @@ struct FuelEfficiencyScreenView: View {
         }
     }
     
+    // function for handling finish editing false.
+    // it will set the form focused to `false` so it will stop edit in all textfield
+    private func handleFinishEditing() {
+        isDistanceFormFocused = false
+        isOdometerStartFormFocused = false
+        isOdometerEndFormFocused = false
+    }
+    
     /** Function for handling calculation.
      * it will check the selected distance view if it is by `Distance` or `Odometer`
      * then it will check the form value, if it is empty then it will do nothing
@@ -97,13 +87,9 @@ struct FuelEfficiencyScreenView: View {
                 handleEmptyFormValidation(formInputErrorState: self.$isDistanceFormErrorInput, formInputErrorMessageState: self.$distanceFormErrorMessage, errorState: true)
             }
             
-            if fuelConsumedForm.isEmpty {
-                handleEmptyFormValidation(formInputErrorState: self.$isFuelConsumedFormErrorInput, formInputErrorMessageState: self.$fuelConsumedFormErrorMessage, errorState: true)
-            }
-            
-            if !fuelConsumedForm.isEmpty && !distanceForm.isEmpty {
-                fuelEfficiencyValue = String(((Double(distanceForm) ?? 0) / (Double(fuelConsumedForm) ?? 0)).rounded(.toNearestOrAwayFromZero))
-                isCalculatedButtonPressed = true
+            if !distanceForm.isEmpty {
+                addItem()
+                path.removeLast(path.count)
             }
             
         } else { // using odometer
@@ -115,17 +101,37 @@ struct FuelEfficiencyScreenView: View {
                 handleEmptyFormValidation(formInputErrorState: self.$isOdometerEndFormErrorInput, formInputErrorMessageState: self.$odometerEndFormErrorMessage, errorState: true)
             }
             
-            if fuelConsumedForm.isEmpty {
-                handleEmptyFormValidation(formInputErrorState: self.$isFuelConsumedFormErrorInput, formInputErrorMessageState: self.$fuelConsumedFormErrorMessage, errorState: true)
-            }
-            
-            if !odometerStartForm.isEmpty && !odometerEndForm.isEmpty && !fuelConsumedForm.isEmpty {
-                fuelEfficiencyValue = String((((Double(odometerEndForm) ?? 0.0) - (Double(odometerStartForm) ?? 0.0)) / (Double(fuelConsumedForm) ?? 0.0)).rounded(.toNearestOrAwayFromZero))
-                isCalculatedButtonPressed = true
+            if !odometerStartForm.isEmpty && !odometerEndForm.isEmpty {
+                addItem()
+                path.removeLast(path.count)
             }
             
         }
         
+    }
+    
+    private func addItem() {
+        withAnimation {
+            print("[NewTripScreenView][addItem]")
+            let newItem = Item(context: viewContext)
+            newItem.id = UUID()
+            newItem.type = CalculationType.newTrip.rawValue
+            newItem.timestamp = Date()
+            newItem.totalMileage = Float(distanceForm) ?? 0.0
+            newItem.fuelEfficiency = Float(fuelEfficiencyValue) ?? 0.0
+            newItem.totalFuelCost = 0.0
+            newItem.unit = selectedOption?.value
+            
+            do {
+                print("[NewTripScreenView][addItem]")
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
     
     // function for resetting form values.
@@ -134,7 +140,6 @@ struct FuelEfficiencyScreenView: View {
         distanceForm = ""
         odometerStartForm = ""
         odometerEndForm = ""
-        fuelConsumedForm = ""
     }
     
     var body: some View {
@@ -146,30 +151,6 @@ struct FuelEfficiencyScreenView: View {
                         .fixedSize()
                     
                     DistanceSegmentedControlView(preselectedIndex: $selectedDistanceView, options: ["DISTANCE", "ODOMETER"])
-                    
-                    // CONTENT-START: Choose Unit
-                    Group {
-                        Text("Choose Units")
-                            .font(.sfMonoRegular(fontSize: 15))
-                            .tracking(-1.32)
-                            .foregroundColor(.appTertiaryColor)
-                        
-                        UnitDropdownView(shouldShowDropdown: $shouldShowDropdown,
-                                         selectedOption: $selectedOption,
-                                         placeholder: "Unit",
-                                         options: UnitData.unitOptions,
-                                         onOptionSelected: { option in
-                            selectedOption = option
-                        }, isExpandingState: { isExpanding in
-                            if isExpanding {
-                                handleFinishEditing()
-                            } else {
-                                shouldShowDropdown = false
-                            }
-                        })
-                        
-                    }
-                    // CONTENT-END: Choose Unit
                     
                     // View Selection
                     if selectedDistanceView == 0 {
@@ -271,38 +252,6 @@ struct FuelEfficiencyScreenView: View {
                         // CONTENT-END: Odometer End
                     }
                     
-                    // CONTENT-START: Fuel Consumed
-                    Group {
-                        Text("Fuel Consumed")
-                            .font(.sfMonoRegular(fontSize: 15))
-                            .tracking(-1.32)
-                            .foregroundColor(.appTertiaryColor)
-                            .padding([.top], 8.0)
-                        
-                        TextField(selectedOption == UnitData.metricOption ? "E.g. 100 Liters" : "E.g. 100 Gallons", text: $fuelConsumedForm)
-                            .font(.sfMonoLight(fontSize: 14.0))
-                            .tracking(-1.24)
-                            .keyboardType(.decimalPad)
-                            .padding(12.0)
-                            .border(isFuelConsumedFormErrorInput ? Color.red : Color.black)
-                            .onChange(of: fuelConsumedForm) { newValue in
-                                handleEmptyFormValidation(formInputErrorState: self.$isFuelConsumedFormErrorInput, formInputErrorMessageState: self.$fuelConsumedFormErrorMessage, errorState: newValue.isEmpty)
-                                fuelConsumedForm = TextFieldUtil.handleDecimalInput(value: newValue)
-                            }
-                            .onTapGesture {
-                                shouldShowDropdown = false
-                            }
-                            .focused($isFuelConsumedFormFocused)
-                        
-                        if isFuelConsumedFormErrorInput {
-                            Text(fuelConsumedFormErrorMessage)
-                                .font(.sfMonoMedium(fontSize: 12.0))
-                                .tracking(-1.96)
-                                .foregroundColor(.red)
-                        }
-                    }
-                    // CONTENT-END: Fuel Consumed
-                    
                     Spacer().onTapGesture {
                         handleFinishEditing()
                     }
@@ -336,9 +285,6 @@ struct FuelEfficiencyScreenView: View {
             }
             .scrollDisabled(geometry.size.height > 700 ? true : false)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(isPresented: $isCalculatedButtonPressed, destination: {
-                FuelEfficiencyResultScreenView(path: $path, fuelEfficiencyValue: $fuelEfficiencyValue, selectedUnit: $selectedOption)
-            })
             .padding([.horizontal], 16.0)
             .padding([.top], 1.0)
             .background(
@@ -369,7 +315,7 @@ struct FuelEfficiencyScreenView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("Fuel Efficiency Calculator")
+                    Text("New Trip Calculator")
                         .font(.sfMonoSemibold(fontSize: 17.0))
                         .tracking(-1.5)
                 }
@@ -384,8 +330,8 @@ struct FuelEfficiencyScreenView: View {
     }
 }
 
-struct FuelEfficiencyScreenView_Previews: PreviewProvider {
-    struct FuelEfficiencyScreenViewPreviewer: View {
+struct NewTripScreenView_Previews: PreviewProvider {
+    struct NewTripScreenViewPreviewer: View {
         @State var path: NavigationPath = NavigationPath()
         @State var fuelEfficiencyValue: String = "0.0"
         @State var selectedOption: UnitDropdownOption? = UnitData.metricOption
@@ -395,6 +341,6 @@ struct FuelEfficiencyScreenView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        FuelEfficiencyScreenViewPreviewer()
+        NewTripScreenViewPreviewer()
     }
 }
