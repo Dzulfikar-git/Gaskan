@@ -174,7 +174,7 @@ struct VehicleMileageScreenView: View {
                     
                     // CONTENT-START: Fuel In
                     Group {
-                        Text("Fuel In")
+                        Text("Fuel in Tank")
                             .font(.sfMonoRegular(fontSize: 15))
                             .tracking(-1.32)
                             .foregroundColor(.appTertiaryColor)

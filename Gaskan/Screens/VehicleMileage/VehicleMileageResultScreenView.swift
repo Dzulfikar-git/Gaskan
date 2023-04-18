@@ -50,7 +50,7 @@ struct VehicleMileageResultScreenView: View {
                             Text("How do we get the result?")
                                 .font(.sfMonoSemibold(fontSize: 18.0))
                                 .tracking(-1.06)
-                            Text("Mileage = Fuel Efficiency x Fuel in")
+                            Text("Mileage = Fuel Efficiency x Fuel in Tank")
                                 .font(.sfMonoRegular(fontSize: 12.0))
                                 .tracking(-0.59)
                                 .padding(8.0)
@@ -77,7 +77,7 @@ struct VehicleMileageResultScreenView: View {
                             ).padding([.bottom], 4.0)
                             
                             (
-                                Text("Fuel in")
+                                Text("Fuel in Tank")
                                     .font(.sfProSemibold(fontSize: 14.0))
                                     .foregroundColor(.appTertiaryColor)
                                 + Text(" refers to the amount of fuel available to the vehicle for travel")
@@ -111,7 +111,7 @@ struct VehicleMileageResultScreenView: View {
                                         .padding([.bottom], 8.0)
                                     
                                     Group {
-                                        Text("Mileage = Fuel Efficiency x Fuel in")
+                                        Text("Mileage = Fuel Efficiency x Fuel in Tank")
                                         Text("Mileage = 30 mpg x 15 gallons")
                                         Text("Mileage = 450 miles")
                                             .padding([.bottom], 8.0)
