@@ -16,9 +16,6 @@ struct GaskanApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            DashboardView(path: $path)
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-//            ContentView()
             MainScreenView()
                 .environmentObject(locationDataManager)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)

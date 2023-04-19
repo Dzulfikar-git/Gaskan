@@ -10,6 +10,7 @@ import SwiftUI
 struct HistoryView: View {
     var calculationType: CalculationType?
     var mileageAmount: Double
+    var unit: UnitDropdownOption?
     var date: Date?
     
     @Binding var isShowDeleteButton: Bool
@@ -59,7 +60,7 @@ struct HistoryView: View {
                                 alignment: .leading
                             )
                     } else if calculationType == .refuel {
-                        Text("Refuel | Mileage + \(String(format: "%.2f", mileageAmount)) KM")
+                        Text("Refuel | Mileage +\(String(format: "%.2f", mileageAmount)) \(unit == UnitData.metricOption ? "KM" : "miles")")
                             .font(.sfMonoMedium(fontSize: 10.0))
                             .foregroundColor(.appTertiaryColor
                             )
@@ -70,7 +71,7 @@ struct HistoryView: View {
                                 alignment: .leading
                             )
                     } else if calculationType == .newTrip {
-                        Text("Travelled | Mileage - \(String(format: "%.2f", mileageAmount)) KM")
+                        Text("Travelled | Mileage -\(String(format: "%.2f", mileageAmount)) \(unit == UnitData.metricOption ? "KM" : "miles")")
                             .font(.sfMonoMedium(fontSize: 10.0))
                             .foregroundColor(.appTertiaryColor
                             )

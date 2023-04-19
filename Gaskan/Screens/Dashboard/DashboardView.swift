@@ -119,6 +119,7 @@ struct DashboardView: View {
                                     HistoryView(
                                         calculationType: calculationType,
                                         mileageAmount: mileageAmount,
+                                        unit: unit,
                                         date: date,
                                         isShowDeleteButton: $isEditCalculation,
                                         onDelete: {
