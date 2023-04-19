@@ -52,7 +52,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
         // if drivingStateTimer is not set, create new one.
         if drivingStateTimer === nil {
             drivingStateTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [self] timer in
-                if (Double(String(self.location?.speed.description ?? "0")) ?? 0 > 0.1) {
+                if (Double(String(self.location?.speed.description ?? "0")) ?? 0 > 0.277778) {
                     self.isDriving = true
                 } else {
                     self.isDriving = false
@@ -66,7 +66,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
     }
     
     func handleDistanceTracking() {
-        Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { timer in
+        Timer.scheduledTimer(withTimeInterval: 300, repeats: true) { timer in
             if !self.isDriving {
                 if self.traveledDistance > 0 {
                     // reset data
@@ -77,34 +77,24 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
                     context.perform {
                         // handle empty data.
                         let items: NSFetchRequest<Item> = Item.fetchRequest()
-                        
+                        items.predicate = NSPredicate(format: "type == %@", CalculationType.newCalculation.rawValue)
                         do {
-                            let test = try context.fetch(items)
-                            print(test)
+                            let hasCalculation = try context.fetch(items)
+                            if !hasCalculation.isEmpty {
+                                let newItem = Item(context: context)
+                                newItem.id = UUID()
+                                newItem.type = CalculationType.newTrip.rawValue
+                                newItem.timestamp = Date()
+                                newItem.totalMileage =  hasCalculation[0].unit == UnitData.metricOption.value ?  Float(self.traveledDistance / 1000) : Float(self.traveledDistance / 0.000621371)
+                                newItem.fuelEfficiency = 0.0
+                                newItem.totalFuelCost = 0.0
+                                
+                                print("[NewTripScreenView][addItem]")
+                                try context.save()
+                                self.traveledDistance = 0
+                            }
                         } catch {
                             print(String(describing: error.localizedDescription))
-                        }
-
-                        
-                        
-                        let newItem = Item(context: context)
-                        newItem.id = UUID()
-                        newItem.type = CalculationType.newTrip.rawValue
-                        newItem.timestamp = Date()
-                        newItem.totalMileage = Float(self.traveledDistance / 1000)
-                        newItem.fuelEfficiency = 0.0
-                        newItem.totalFuelCost = 0.0
-                        newItem.unit = "Metric"
-                        
-                        do {
-                            print("[NewTripScreenView][addItem]")
-                            try context.save()
-                            self.traveledDistance = 0
-                        } catch {
-                            // Replace this implementation with code to handle the error appropriately.
-                            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                            let nsError = error as NSError
-                            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
                         }
                     }
                 }
@@ -164,8 +154,8 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Insert code to handle location updates
         if let currentLocation = locations.first {
-          print(currentLocation)
-          location = currentLocation
+            print(currentLocation)
+            location = currentLocation
         }
         
         // handle distance traveled
@@ -176,7 +166,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
             lastLocation = locations.last
         }
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error: \(error.localizedDescription)")
     }
