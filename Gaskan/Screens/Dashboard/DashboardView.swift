@@ -10,6 +10,7 @@ import CoreData
 
 struct DashboardView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject private var locationDataManager: LocationDataManager
     
     @Binding var path: NavigationPath
     
@@ -46,6 +47,10 @@ struct DashboardView: View {
                         Text("Calculation Result")
                             .font(.sfMonoBold(fontSize: 24))
                             .tracking(-1.5)
+                        
+                        if locationDataManager.isDriving {
+                            Label("Is Driving", systemImage: "car.circle")
+                        }
                         
                         Spacer()
                             .frame(idealHeight: 32)

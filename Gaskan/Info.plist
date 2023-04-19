@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.oleng.Gaskan.track.distance</string>
+		<string>com.oleng.Gaskan.track</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Mono-Medium.otf</string>
@@ -12,6 +17,12 @@
 		<string>SF-Pro-Text-Regular.otf</string>
 		<string>SF-Pro-Text-Semibold.otf</string>
 		<string>SF-Pro-Text-SemiboldItalic.otf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+		<string>processing</string>
 	</array>
 </dict>
 </plist>

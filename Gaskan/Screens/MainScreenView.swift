@@ -12,6 +12,7 @@ struct MainScreenView: View {
     @State private var path: NavigationPath = .init()
     @AppStorage("isFirstLaunch") private var isFirstLaunch = true
     @State var isShowDashboard = false
+    @EnvironmentObject var locationDataManager: LocationDataManager
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -23,7 +24,9 @@ struct MainScreenView: View {
                     }
                 })
             } else {
-                DashboardView(path: $path)             
+                DashboardView(path: $path).onAppear {
+//                        locationDataManager.handlePermission()
+                    }
             }
         }
     }
