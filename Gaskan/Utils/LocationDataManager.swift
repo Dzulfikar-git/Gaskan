@@ -52,7 +52,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
         // if drivingStateTimer is not set, create new one.
         if drivingStateTimer === nil {
             drivingStateTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [self] timer in
-                if (Double(String(self.location?.speed.description ?? "0")) ?? 0 > 0.277778) {
+                if (Double(String(self.location?.speed.description ?? "0")) ?? 0 > 0.2) {
                     self.isDriving = true
                 } else {
                     self.isDriving = false
@@ -66,7 +66,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
     }
     
     func handleDistanceTracking() {
-        Timer.scheduledTimer(withTimeInterval: 300, repeats: true) { timer in
+        Timer.scheduledTimer(withTimeInterval: 3000, repeats: true) { timer in
             if !self.isDriving {
                 if self.traveledDistance > 0 {
                     // reset data

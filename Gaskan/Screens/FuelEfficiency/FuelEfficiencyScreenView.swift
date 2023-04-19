@@ -286,6 +286,7 @@ struct FuelEfficiencyScreenView: View {
                     }
                     
                     Button {
+                        handleFinishEditing()
                         handleCalculate()
                     } label: {
                         Text("CALCULATE")
@@ -300,6 +301,7 @@ struct FuelEfficiencyScreenView: View {
                     )
                     
                     Button {
+                        handleFinishEditing()
                         handleReset()
                     } label: {
                         Text("RESET")
