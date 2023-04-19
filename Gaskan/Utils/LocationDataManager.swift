@@ -76,7 +76,15 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
                     context.automaticallyMergesChangesFromParent = true
                     context.perform {
                         // handle empty data.
+                        let items: NSFetchRequest<Item> = Item.fetchRequest()
                         
+                        do {
+                            let test = try context.fetch(items)
+                            print(test)
+                        } catch {
+                            print(String(describing: error.localizedDescription))
+                        }
+
                         
                         
                         let newItem = Item(context: context)
@@ -137,6 +145,19 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
             
         default:
             break
+        }
+    }
+    
+    func getCalculationType(type: String) -> CalculationType {
+        switch type {
+        case CalculationType.newTrip.rawValue:
+            return .newTrip
+        case CalculationType.refuel.rawValue:
+            return .refuel
+        case CalculationType.newCalculation.rawValue:
+            return .newCalculation
+        default:
+            return .newCalculation
         }
     }
     
