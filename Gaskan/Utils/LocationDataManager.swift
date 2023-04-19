@@ -138,6 +138,19 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
         }
     }
     
+    func getCalculationType(type: String) -> CalculationType {
+        switch type {
+        case CalculationType.newTrip.rawValue:
+            return .newTrip
+        case CalculationType.refuel.rawValue:
+            return .refuel
+        case CalculationType.newCalculation.rawValue:
+            return .newCalculation
+        default:
+            return .newCalculation
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // Insert code to handle location updates
         if let currentLocation = locations.first {

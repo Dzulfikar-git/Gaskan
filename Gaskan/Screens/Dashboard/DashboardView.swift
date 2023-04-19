@@ -337,8 +337,6 @@ struct DashboardView: View {
         default:
             return .newCalculation
         }
-        
-
     }
     
     func getMileageAmount(totalMileage: Double, calculationType: CalculationType?) -> Double {
