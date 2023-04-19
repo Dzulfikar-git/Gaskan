@@ -206,7 +206,6 @@ struct VehicleMileageResultScreenView: View {
             let newItem = Item(context: viewContext)
             newItem.id = UUID()
             newItem.type = CalculationType.newCalculation.rawValue
-            print("[addItem][newItem.type]", newItem.type)
             newItem.timestamp = Date()
             newItem.totalMileage = Float(totalMileage)
             newItem.fuelEfficiency = Float(fuelEfficiency) ?? 0.0
