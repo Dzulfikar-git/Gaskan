@@ -102,7 +102,8 @@ struct FuelEfficiencyScreenView: View {
             }
             
             if !fuelConsumedForm.isEmpty && !distanceForm.isEmpty {
-                fuelEfficiencyValue = String(((Double(distanceForm) ?? 0) / (Double(fuelConsumedForm) ?? 0)).rounded(.toNearestOrAwayFromZero))
+                fuelEfficiencyValue = String(format: "%.2f", ((Double(distanceForm) ?? 0) / (Double(fuelConsumedForm) ?? 0)).rounded(.toNearestOrAwayFromZero))
+                print("[fuelEfficiencyValue]", fuelEfficiencyValue)
                 isCalculatedButtonPressed = true
             }
             
@@ -120,7 +121,8 @@ struct FuelEfficiencyScreenView: View {
             }
             
             if !odometerStartForm.isEmpty && !odometerEndForm.isEmpty && !fuelConsumedForm.isEmpty {
-                fuelEfficiencyValue = String((((Double(odometerEndForm) ?? 0.0) - (Double(odometerStartForm) ?? 0.0)) / (Double(fuelConsumedForm) ?? 0.0)).rounded(.toNearestOrAwayFromZero))
+                fuelEfficiencyValue = String(format: "%.2f", (((Double(odometerEndForm) ?? 0.0) - (Double(odometerStartForm) ?? 0.0)) / (Double(fuelConsumedForm) ?? 0.0)).rounded(.toNearestOrAwayFromZero))
+                print("[fuelEfficiencyValue]", fuelEfficiencyValue)
                 isCalculatedButtonPressed = true
             }
             

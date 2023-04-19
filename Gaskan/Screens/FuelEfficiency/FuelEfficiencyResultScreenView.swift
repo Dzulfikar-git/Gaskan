@@ -30,7 +30,7 @@ struct FuelEfficiencyResultScreenView: View {
                     }
                     Spacer()
                     
-                    Text(String(format: "%.2f", fuelEfficiencyValue))
+                    Text(String(fuelEfficiencyValue))
                         .font(.sfMonoBold(fontSize: 28.0))
                         .tracking(1.4)
                     +
@@ -90,6 +90,9 @@ struct FuelEfficiencyResultScreenView: View {
             .background(
                 Rectangle().fill(Color.appSecondaryColor)
             )
+        }
+        .onAppear{
+            print("[fuelEfficiencyValue]", fuelEfficiencyValue)
         }
         .padding([.all], 16.0)
         .textFieldStyle(.plain).autocorrectionDisabled()
