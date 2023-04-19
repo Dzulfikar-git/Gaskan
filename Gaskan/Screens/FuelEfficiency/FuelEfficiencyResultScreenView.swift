@@ -30,7 +30,7 @@ struct FuelEfficiencyResultScreenView: View {
                     }
                     Spacer()
                     
-                    Text(String(fuelEfficiencyValue))
+                    Text(String(format: "%.2f", fuelEfficiencyValue))
                         .font(.sfMonoBold(fontSize: 28.0))
                         .tracking(1.4)
                     +
