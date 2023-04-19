@@ -23,6 +23,7 @@ struct GaskanApp: App {
                 .environmentObject(locationDataManager)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .foregroundColor(Color.black)
+                .preferredColorScheme(.light)
         }
     }
 }
