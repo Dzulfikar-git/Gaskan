@@ -52,7 +52,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
         // if drivingStateTimer is not set, create new one.
         if drivingStateTimer === nil {
             drivingStateTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [self] timer in
-                if (Double(String(self.location?.speed.description ?? "0")) ?? 0 > 0.2) {
+                if (Double(String(self.location?.speed.description ?? "0")) ?? 0 > 4.16667) {
                     self.isDriving = true
                 } else {
                     self.isDriving = false
