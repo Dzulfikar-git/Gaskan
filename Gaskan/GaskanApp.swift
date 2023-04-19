@@ -11,6 +11,8 @@ import SwiftUI
 struct GaskanApp: App {
     let persistenceController = PersistenceController.shared
     @State private var path: NavigationPath = .init()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var locationDataManager: LocationDataManager = .shared
     
     var body: some Scene {
         WindowGroup {
@@ -18,7 +20,9 @@ struct GaskanApp: App {
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
 //            ContentView()
             MainScreenView()
+                .environmentObject(locationDataManager)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .foregroundColor(Color.black)
         }
     }
 }

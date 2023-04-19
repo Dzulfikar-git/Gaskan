@@ -10,6 +10,9 @@
 		263C38B029D723D600A8676C /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C38AF29D723D600A8676C /* MainScreenView.swift */; };
 		266246D629D71F8A00F8B699 /* GaskanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266246D529D71F8A00F8B699 /* GaskanApp.swift */; };
 		266246DA29D71F8B00F8B699 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266246D929D71F8B00F8B699 /* Assets.xcassets */; };
+		2673A3A029EED9D900E32001 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2673A39F29EED9D900E32001 /* LocationDataManager.swift */; };
+		2673A3A229EEDE5100E32001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2673A3A129EEDE5100E32001 /* AppDelegate.swift */; };
+		2673A3A529EEDE9F00E32001 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2673A3A429EEDE9F00E32001 /* AppConstants.swift */; };
 		26D1B61729E64815007E6154 /* TextFieldUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B61629E64815007E6154 /* TextFieldUtil.swift */; };
 		26D1B63329E6489E007E6154 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63029E6489E007E6154 /* Font.swift */; };
 		26D1B63429E6489E007E6154 /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63129E6489E007E6154 /* Spacer.swift */; };
@@ -60,6 +63,9 @@
 		266246D529D71F8A00F8B699 /* GaskanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaskanApp.swift; sourceTree = "<group>"; };
 		266246D929D71F8B00F8B699 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		266246DC29D71F8B00F8B699 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2673A39F29EED9D900E32001 /* LocationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataManager.swift; sourceTree = "<group>"; };
+		2673A3A129EEDE5100E32001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2673A3A429EEDE9F00E32001 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		26D1B61629E64815007E6154 /* TextFieldUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldUtil.swift; sourceTree = "<group>"; };
 		26D1B62829E6488D007E6154 /* SF-Mono-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Medium.otf"; sourceTree = "<group>"; };
 		26D1B62929E6488D007E6154 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
@@ -214,6 +220,7 @@
 				266246DB29D71F8B00F8B699 /* Preview Content */,
 				263C389E29D7200600A8676C /* Screens */,
 				26D1B61529E647FF007E6154 /* Utils */,
+				2673A3A129EEDE5100E32001 /* AppDelegate.swift */,
 			);
 			path = Gaskan;
 			sourceTree = "<group>";
@@ -226,10 +233,19 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		2673A3A329EEDE9300E32001 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				2673A3A429EEDE9F00E32001 /* AppConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		26D1B61529E647FF007E6154 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				26D1B61629E64815007E6154 /* TextFieldUtil.swift */,
+				2673A39F29EED9D900E32001 /* LocationDataManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -270,6 +286,7 @@
 		26D1B64F29E64AF8007E6154 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				2673A3A329EEDE9300E32001 /* Constants */,
 				6C38616829EBEADC00A471CD /* Persistence.swift */,
 				26D1B65029E64B08007E6154 /* UnitData.swift */,
 				6C38613529EA68BB00A471CD /* CalculationType.swift */,
@@ -409,8 +426,11 @@
 				26D1B63429E6489E007E6154 /* Spacer.swift in Sources */,
 				26D1B64729E64A06007E6154 /* DistanceSegmentedControlView.swift in Sources */,
 				26D1B66329E65A3D007E6154 /* FuelEfficiencyResultScreenView.swift in Sources */,
+				2673A3A229EEDE5100E32001 /* AppDelegate.swift in Sources */,
 				26D1B66429E65A3D007E6154 /* FuelEfficiencyScreenView.swift in Sources */,
+				2673A3A529EEDE9F00E32001 /* AppConstants.swift in Sources */,
 				26D1B64629E64A06007E6154 /* CircleChevronDisclosureStyle.swift in Sources */,
+				2673A3A029EED9D900E32001 /* LocationDataManager.swift in Sources */,
 				266246D629D71F8A00F8B699 /* GaskanApp.swift in Sources */,
 				26D1B61729E64815007E6154 /* TextFieldUtil.swift in Sources */,
 				6C38614529EBC0C100A471CD /* NewTripScreenView.swift in Sources */,
@@ -559,13 +579,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gaskan/Preview Content\"";
-				DEVELOPMENT_TEAM = 57DDT5D7L5;
+				DEVELOPMENT_TEAM = 2W2FLHT9EF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Gaskan/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "App needs location data in order to automatically track your mileage.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "App needs location data in order to automatically track your mileage.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App needs location data in order to automatically track your mileage.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "gps location-services magnetometer";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -589,13 +613,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gaskan/Preview Content\"";
-				DEVELOPMENT_TEAM = 57DDT5D7L5;
+				DEVELOPMENT_TEAM = 2W2FLHT9EF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Gaskan/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "App needs location data in order to automatically track your mileage.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "App needs location data in order to automatically track your mileage.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App needs location data in order to automatically track your mileage.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "gps location-services magnetometer";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
