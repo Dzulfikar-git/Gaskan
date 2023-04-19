@@ -13,6 +13,8 @@ struct DashboardView: View {
     
     @Binding var path: NavigationPath
     
+    @AppStorage("isCalculated") private var isCalculated = false
+    
     @State private var scrollOffset: CGFloat = 0
     @State private var isScrolling = false
     @State private var buttonTimer: Timer?
@@ -54,11 +56,10 @@ struct DashboardView: View {
                         CardView(
                             title: "Your Vehicle’s Remaining Mileage",
                             description: formatDateToString(date: mileageDate),
-                            value: String(remainingMileage),
+                            value: String(format: "%.2f", remainingMileage),
                             unit: unit == UnitData.metricOption ? "  km" : "  miles",
                             isShowButton: items.contains(where: { getCalculationType(type: String($0.type ?? "")) == CalculationType.newCalculation })) {
                                 path.append(RefuelRoutingPath())
-                                //                                addItem()
                             } onClickedMinus: {
                                 path.append(NewTripRoutingPath())
                             }
@@ -66,8 +67,8 @@ struct DashboardView: View {
                         HStack {
                             ChildCardView(
                                 title: "Fuel Efficiency",
-                                value: String(fuelEfficiency),
-                                unit: unit == UnitData.metricOption ? "KM/L" : "WHAT"
+                                value: String(format: "%.2f", fuelEfficiency),
+                                unit: unit == UnitData.metricOption ? "KM/L" : "M/G"
                             )
                             
                             
@@ -106,16 +107,9 @@ struct DashboardView: View {
                                     
                                     let calculationType: CalculationType = getCalculationType(type: String(item.type ?? ""))
                                     
-                                    let mileageAmount: Double = getMileageAmount(
-                                        totalMileage: Double(item.totalMileage),
-                                        calculationType: calculationType)
+                                    let mileageAmount: Double =  Double(item.totalMileage)
                                     
-                                    //                                    let totalMileage = Double(item.totalMileage)
                                     let date = item.timestamp
-                                    
-                                    //                                    let fuelEff = Double(item.fuelEfficiency)
-                                    
-                                    //                                    let totalFuelCost = Int(item.totalFuelCost)
                                     
                                     HistoryView(
                                         calculationType: calculationType,
@@ -123,57 +117,6 @@ struct DashboardView: View {
                                         date: date,
                                         isShowDeleteButton: $isEditCalculation,
                                         onDelete: {
-                                            //                                            withAnimation {
-                                            //                                                // When an item is deleted, update remainingMileage based on its calculationType
-                                            //                                                switch calculationType {
-                                            //                                                case .newCalculation:
-                                            //                                                    // If the deleted item is a newCalculation, we need to find the previous newCalculation item and use its remainingMileage
-                                            //                                                    if let previousItem = items.last(where: { getCalculationType(type: Int($0.type)) == CalculationType.newCalculation && $0.id != item.id }) {
-                                            //                                                        remainingMileage = Double(previousItem.totalMileage)
-                                            //                                                        mileageDate = previousItem.timestamp
-                                            //                                                        fuelEfficiency = Double(previousItem.fuelEfficiency)
-                                            //                                                        totalCosts = Int(previousItem.totalFuelCost)
-                                            //
-                                            //                                                        // Loop through the remaining items in the array and adjust the remainingMileage value based on their calculationType
-                                            //                                                        for remainingIndex in index..<items.count {
-                                            //                                                            let remainingItem = items[remainingIndex]
-                                            //                                                            let remainingCalculationType = getCalculationType(type: Int(remainingItem.type))
-                                            //                                                            let remainingTotalMileage = Double(item.totalMileage)
-                                            //                                                            let remainingDate = item.timestamp
-                                            //                                                            let remainingFuelEfficiency = Double(item.fuelEfficiency)
-                                            //                                                            let remainingTotalCost = Int(item.totalFuelCost)
-                                            //
-                                            //                                                            switch remainingCalculationType {
-                                            //                                                            case .refuel:
-                                            //                                                                remainingMileage += remainingTotalMileage
-                                            //                                                                fuelEfficiency = remainingFuelEfficiency
-                                            //                                                                totalCosts += remainingTotalCost
-                                            //                                                            case .newTrip:
-                                            //                                                                remainingMileage -= remainingTotalMileage
-                                            //                                                                fuelEfficiency = remainingFuelEfficiency
-                                            //                                                                totalCosts -= remainingTotalCost
-                                            //                                                            default:
-                                            //                                                                break
-                                            //                                                            }
-                                            //                                                        }
-                                            //
-                                            //                                                        deleteItem(item: item)
-                                            //                                                    } else {
-                                            //                                                        deleteAllItems()
-                                            //                                                    }
-                                            //                                                case .refuel:
-                                            //                                                    remainingMileage -= totalMileage
-                                            //                                                    fuelEfficiency = fuelEff
-                                            //                                                    totalCosts -= totalFuelCost
-                                            //                                                    deleteItem(item: item)
-                                            //                                                case .newTrip:
-                                            //                                                    remainingMileage += totalMileage
-                                            //                                                    fuelEfficiency = fuelEff
-                                            //                                                    totalCosts += totalFuelCost
-                                            //                                                    deleteItem(item: item)
-                                            //                                                }
-                                            //                                            }
-                                            
                                             updateRemainingMileage()
                                             deleteItem(item: item)
                                         }
@@ -182,21 +125,6 @@ struct DashboardView: View {
                                     .fixedSize()
                                     .onAppear {
                                         updateRemainingMileage()
-                                        //                                        switch calculationType {
-                                        //                                        case .newCalculation:
-                                        //                                            remainingMileage = totalMileage
-                                        //                                            mileageDate = date
-                                        //                                            fuelEfficiency = fuelEff
-                                        //                                            totalCosts = totalFuelCost
-                                        //                                        case .refuel:
-                                        //                                            remainingMileage += totalMileage
-                                        //                                            fuelEfficiency = fuelEff
-                                        //                                            totalCosts += totalFuelCost
-                                        //                                        case .newTrip:
-                                        //                                            remainingMileage -= totalMileage
-                                        //                                            fuelEfficiency = fuelEff
-                                        //                                            totalCosts -= totalFuelCost
-                                        //                                        }
                                     }
                                 }
                             }
@@ -266,6 +194,10 @@ struct DashboardView: View {
             }
         }
         .onAppear{
+            if !isCalculated {
+                path.append(VehicleMileageRoutingPath())
+            }
+            
             updateRemainingMileage()
         }
         .navigationDestination(for: VehicleMileageRoutingPath.self) { _ in
@@ -275,7 +207,7 @@ struct DashboardView: View {
                 RefuelScreenView(path: $path, selectedOption: $unit)
         }
         .navigationDestination(for: NewTripRoutingPath.self) { _ in
-            NewTripScreenView(path: $path, selectedOption: $unit)
+            NewTripScreenView(path: $path, selectedOption: $unit, totalMileage: Float(remainingMileage))
         }
         .padding([.horizontal], 16.0)
         .padding([.top], 1.0)
@@ -311,7 +243,7 @@ struct DashboardView: View {
             withAnimation {
                 if let lastItem = items.last {
                     remainingMileage = Double(lastItem.totalMileage)
-                    print("[updateRemainingMileage][remainingMileage]", remainingMileage)
+                    print("[updateRemainingMileage][lastItem.fuelEfficiency]", lastItem.fuelEfficiency)
                     mileageDate = lastItem.timestamp
                     fuelEfficiency = Double(lastItem.fuelEfficiency)
                     totalCosts = Int(lastItem.totalFuelCost)
@@ -337,7 +269,6 @@ struct DashboardView: View {
                             totalCosts += totalFuelCost
                         case .newTrip:
                             remainingMileage -= mileageAmount
-                            fuelEfficiency = fuelEff
                             totalCosts -= totalFuelCost
                         default:
                             break
@@ -369,57 +300,6 @@ struct DashboardView: View {
             return nil
         }
     }
-    
-    //    private func addItem() {
-    //        withAnimation {
-    //            let newItem = Item(context: viewContext)
-    //            newItem.id = UUID()
-    //            newItem.type = Int64(CalculationType.newTrip.hashValue)
-    //            newItem.timestamp = Date()
-    //            newItem.totalMileage = 10.0
-    //            newItem.fuelEfficiency = 10.0
-    //            newItem.totalFuelCost = 10.0
-    //
-    //            do {
-    //                try viewContext.save()
-    //            } catch {
-    //                // Replace this implementation with code to handle the error appropriately.
-    //                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-    //                let nsError = error as NSError
-    //                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-    //            }
-    //        }
-    //    }
-    //
-    //    private func addItem(calculationType: CalculationType) {
-    //        withAnimation {
-    //            let newItem = Item(context: viewContext)
-    //            newItem.id = UUID()
-    //
-    //            switch calculationType {
-    //            case.newCalculation:
-    //                newItem.type = 0
-    //            case.newTrip:
-    //                newItem.type = 1
-    //            case.refuel:
-    //                newItem.type = 2
-    //            }
-    //
-    //            newItem.timestamp = Date()
-    //            newItem.totalMileage = 10.0
-    //            newItem.fuelEfficiency = 10.0
-    //            newItem.totalFuelCost = 10.0
-    //
-    //            do {
-    //                try viewContext.save()
-    //            } catch {
-    //                // Replace this implementation with code to handle the error appropriately.
-    //                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-    //                let nsError = error as NSError
-    //                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-    //            }
-    //        }
-    //    }
     
     private func deleteAllItems() {
         for item in items {

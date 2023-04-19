@@ -52,6 +52,12 @@ struct NewTripScreenView: View {
     @FocusState private var isOdometerEndFormFocused: Bool
     // STATE END: odometer start form state
     
+    var totalMileage: Float = 0.0
+    
+    @State private var showAlert = false
+    @State private var alertTitle = ""
+    @State private var alertDescription = ""
+    
     /** Function to handle empty form validaton
      *  @param `formInputErrorState` for form input error state binding
      *  @param `formInputErrorMessageState` for error message
@@ -88,6 +94,13 @@ struct NewTripScreenView: View {
             }
             
             if !distanceForm.isEmpty {
+                if totalMileage <= Float(distanceForm) ?? 0.0 {
+                    showAlert = true
+                    alertTitle = "Distance Exceeds Total Mileage"
+                    alertDescription = "Please input the distance below your current total mileage"
+                    return
+                }
+                
                 addItem()
                 path.removeLast(path.count)
             }
@@ -102,6 +115,13 @@ struct NewTripScreenView: View {
             }
             
             if !odometerStartForm.isEmpty && !odometerEndForm.isEmpty {
+                if totalMileage <= Float(distanceForm) ?? 0.0 {
+                    showAlert = true
+                    alertTitle = "Distance Exceeds Total Mileage"
+                    alertDescription = "Please input the distance below your current total mileage"
+                    return
+                }
+                
                 addItem()
                 path.removeLast(path.count)
             }
@@ -113,6 +133,7 @@ struct NewTripScreenView: View {
     private func addItem() {
         withAnimation {
             print("[NewTripScreenView][addItem]")
+            
             let newItem = Item(context: viewContext)
             newItem.id = UUID()
             newItem.type = CalculationType.newTrip.rawValue
@@ -283,6 +304,9 @@ struct NewTripScreenView: View {
                 }
                 .frame(height: geometry.size.height)
             }
+            .alert(isPresented: $showAlert) {
+                        Alert(title: Text(alertTitle), message: Text(alertDescription), dismissButton: .default(Text("OK")))
+                    }
             .scrollDisabled(geometry.size.height > 700 ? true : false)
             .navigationBarTitleDisplayMode(.inline)
             .padding([.horizontal], 16.0)

@@ -37,7 +37,7 @@ struct VehicleMileageResultScreenView: View {
                     CardView(
                         title: "Vehicle Mileage",
                         description: "How many mileage you could travel with your fuel?",
-                        value: String(totalMileage),
+                        value: String(format: "%.2f", totalMileage),
                         unit: selectedUnit == UnitData.metricOption ? "  km" : "  miles",
                         isShowButton: false) {
                             
@@ -147,6 +147,8 @@ struct VehicleMileageResultScreenView: View {
                 Button {
                     deleteAllItems()
                     addItem()
+                    
+                    UserDefaults.standard.set(true, forKey: "isCalculated")
                     
                     path.removeLast(path.count)
                 } label: {

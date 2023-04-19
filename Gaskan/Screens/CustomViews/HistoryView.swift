@@ -59,7 +59,7 @@ struct HistoryView: View {
                                 alignment: .leading
                             )
                     } else if calculationType == .refuel {
-                        Text("Refuel | Mileage +\(String(mileageAmount)) KM")
+                        Text("Refuel | Mileage + \(String(format: "%.2f", mileageAmount)) KM")
                             .font(.sfMonoMedium(fontSize: 10.0))
                             .foregroundColor(.appTertiaryColor
                             )
@@ -70,7 +70,7 @@ struct HistoryView: View {
                                 alignment: .leading
                             )
                     } else if calculationType == .newTrip {
-                        Text("Travelled | Mileage -\(String(mileageAmount)) KM")
+                        Text("Travelled | Mileage - \(String(format: "%.2f", mileageAmount)) KM")
                             .font(.sfMonoMedium(fontSize: 10.0))
                             .foregroundColor(.appTertiaryColor
                             )

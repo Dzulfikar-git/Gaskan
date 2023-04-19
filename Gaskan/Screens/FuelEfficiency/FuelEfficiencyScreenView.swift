@@ -147,30 +147,6 @@ struct FuelEfficiencyScreenView: View {
                     
                     DistanceSegmentedControlView(preselectedIndex: $selectedDistanceView, options: ["DISTANCE", "ODOMETER"])
                     
-                    // CONTENT-START: Choose Unit
-                    Group {
-                        Text("Choose Units")
-                            .font(.sfMonoRegular(fontSize: 15))
-                            .tracking(-1.32)
-                            .foregroundColor(.appTertiaryColor)
-                        
-                        UnitDropdownView(shouldShowDropdown: $shouldShowDropdown,
-                                         selectedOption: $selectedOption,
-                                         placeholder: "Unit",
-                                         options: UnitData.unitOptions,
-                                         onOptionSelected: { option in
-                            selectedOption = option
-                        }, isExpandingState: { isExpanding in
-                            if isExpanding {
-                                handleFinishEditing()
-                            } else {
-                                shouldShowDropdown = false
-                            }
-                        })
-                        
-                    }
-                    // CONTENT-END: Choose Unit
-                    
                     // View Selection
                     if selectedDistanceView == 0 {
                         
