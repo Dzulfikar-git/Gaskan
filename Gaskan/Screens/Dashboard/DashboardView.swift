@@ -136,11 +136,16 @@ struct DashboardView: View {
                         }
                         else {
                             // Add a default view to the VStack when items is empty
-                            Text("No items found").onAppear{
+                            Text("No items found")
+                            .onAppear{
                                 remainingMileage = 0
                                 fuelEfficiency = 0
                                 totalCosts = 0
                             }
+                            .font(.sfMonoBold(fontSize: 16.0))
+                            .foregroundColor(.appTertiaryColor)
+                            .tracking(-1.41)
+                            
                         }
                         
                         
