@@ -78,7 +78,7 @@ struct FuelEfficiencyResultScreenView: View {
             Spacer()
             
             Button {
-                path.removeLast(1)
+                if !path.isEmpty { path.removeLast(path.count) }
             } label: {
                 Text("USE THIS RESULT TO CALCULATE VEHICLE MILEAGE")
                     .frame(maxWidth: .infinity)
@@ -90,9 +90,6 @@ struct FuelEfficiencyResultScreenView: View {
             .background(
                 Rectangle().fill(Color.appSecondaryColor)
             )
-        }
-        .onAppear{
-            print("[fuelEfficiencyValue]", fuelEfficiencyValue)
         }
         .padding([.all], 16.0)
         .textFieldStyle(.plain).autocorrectionDisabled()
