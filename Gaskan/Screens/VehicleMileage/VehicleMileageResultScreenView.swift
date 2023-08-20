@@ -9,6 +9,7 @@ import SwiftUI
 
 struct VehicleMileageResultScreenView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var vehicleMileageResultViewModel: VehicleMileageResultViewModel
     
     @Binding var path: NavigationPath
     
@@ -105,7 +106,6 @@ struct VehicleMileageResultScreenView: View {
                                         .font(.sfProRegular(fontSize: 14.0))
                                         .padding([.bottom], 8.0)
                                     
-                                    
                                     Text("For example, if a vehicle has a fuel efficiency of 30 miles per gallon (mpg) and a full tank of 15 gallons of fuel, then the mileage would be:")
                                         .font(.sfProRegular(fontSize: 14.0))
                                         .padding([.bottom], 8.0)
@@ -145,10 +145,10 @@ struct VehicleMileageResultScreenView: View {
                 Spacer()
                 
                 Button {
-                    deleteAllItems()
-                    addItem()
+                    vehicleMileageResultViewModel.deleteAllItems(viewContext: viewContext, items: items)
+                    vehicleMileageResultViewModel.addItem(viewContext: viewContext, calculationType: CalculationType.newCalculation.rawValue, totalMileage: Float(totalMileage), fuelEfficiency: Float(fuelEfficiency) ?? 0, fuelIn: Float(fuelIn) ?? 0, fuelCostPerUnit: Float(fuelCostPerUnit) ?? 0, unit: selectedUnit!)
                     
-                    UserDefaults.standard.set(true, forKey: "isCalculated")
+                    vehicleMileageResultViewModel.saveAppDefaultHasCalculation()
                     
                     path.removeLast(path.count)
                 } label: {
@@ -200,48 +200,6 @@ struct VehicleMileageResultScreenView: View {
         }
         .scrollDisabled(!isExampleExpanding)
     }
-    
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.id = UUID()
-            newItem.type = CalculationType.newCalculation.rawValue
-            newItem.timestamp = Date()
-            newItem.totalMileage = Float(totalMileage)
-            newItem.fuelEfficiency = Float(fuelEfficiency) ?? 0.0
-            newItem.totalFuelCost = (Float(fuelIn) ?? 0.0) * (Float(fuelCostPerUnit) ?? 0.0)
-            newItem.unit = selectedUnit?.value
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-    
-    private func deleteAllItems() {
-        for item in items {
-            deleteItem(item: item)
-        }
-    }
-    
-    private func deleteItem(item: Item) {
-        withAnimation {
-            viewContext.delete(item)
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
 }
 
 struct VehicleMileageResultScreenView_Previews: PreviewProvider {
@@ -256,6 +214,7 @@ struct VehicleMileageResultScreenView_Previews: PreviewProvider {
         
         var body: some View {
             VehicleMileageResultScreenView(path: $path, totalMileage: $totalMileage, fuelEfficiency: $fuelEfficiency, fuelIn: $fuelIn, fuelCostPerUnit: $fuelCostPerUnit, selectedUnit: $selectedOption)
+                .environmentObject(VehicleMileageResultViewModel.shared)
         }
     }
     
