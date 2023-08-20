@@ -95,7 +95,7 @@ struct UnitDropdownView: View {
                 Text(selectedOption == nil ? placeholder : selectedOption!.value)
                     .font(.sfMonoLight(fontSize: 14))
                     .tracking(-1.24)
-                    .foregroundColor(selectedOption == nil ? Color.appTertiaryColor: Color.black)
+                    .foregroundColor(selectedOption == nil ? Color.appTertiaryColor : Color.black)
                 
                 Spacer()
                 

@@ -9,98 +9,22 @@ import SwiftUI
 
 struct VehicleMileageScreenView: View {
     @Binding var path: NavigationPath
+    @EnvironmentObject var vehicleMileageViewModel: VehicleMileageViewModel
+    @StateObject private var vehicleMileageResultViewModel: VehicleMileageResultViewModel = .init()
+    @StateObject private var fuelEfficiencyViewModel: FuelEfficiencyViewModel = .init()
     
-    // STATE START: dropdown state
-    @State private var shouldShowDropdown = false
-    @State private var isDropdownExpanding = false
-    // STATE END: dropdown state
-    
-    // STATE START: unit selection state
-    @State private var selectedOption: UnitDropdownOption? = UnitData.metricOption
-    // STATE END: unit selection state
-    
-    // STATE START: fuel efficiency form state
-    @State private var fuelEfficiencyForm: String = ""
-    @State private var isFuelEfficiencyFormErrorInput: Bool = false
-    @State private var fuelEfficiencyFormErrorMessage: String = ""
     @FocusState private var isFuelEfficiencyFocused: Bool
-    // STATE END: fuel efficiency form state
-    
-    // STATE START: fuel in form state
-    @State private var fuelInForm: String = ""
-    @State private var isFuelInFormErrorInput: Bool = false
-    @State private var fuelInFormErrorMessage: String = ""
     @FocusState private var isFuelInFormFocused: Bool
-    // STATE END: fuel in form state
-    
-    // STATE START: fuel cost per unit form state
-    @State private var fuelCostPerUnitForm: String = ""
     @FocusState private var isFuelCostPerUnitFocused: Bool
-    // STATE START: fuel cost per unit form state
     
-    // STATE START: finding fuel efficiency state
-    @State private var isFindingFuelEfficiency: Bool = false
-    
-    // STATE START: calculate button pressed state
-    @State private var isCalculateButtonPressed: Bool = false
-    // STATE END: calculate button pressed state
-    
-    // STATE START: total mileage value state
-    @State private var totalMileage: Double = 0
-    // STATE END: total mileage value state
-    
-    // function for handling finish editing form.
-    // it will set the form focused to `false` so it will stop edit in all textfield
+    /**
+     this function for handling form editing
+     it will set the form focused to `false` so it will stop edit in all textfield
+     */
     private func handleFinishEditing() {
         isFuelEfficiencyFocused = false
         isFuelInFormFocused = false
         isFuelCostPerUnitFocused = false
-    }
-    
-    /** Function to handle empty form validaton
-     *  @param `formInputErrorState` for form input error state binding
-     *  @param `formInputErrorMessageState` for error message
-     *  @param `errorState` state of the error either true or false to set error state data
-     */
-    private func handleEmptyFormValidation(formInputErrorState: Binding<Bool>, formInputErrorMessageState: Binding<String>, errorState: Bool) {
-        if errorState {
-            formInputErrorState.wrappedValue = true
-            formInputErrorMessageState.wrappedValue = "Please fill the field !"
-        } else {
-            formInputErrorState.wrappedValue = false
-            formInputErrorMessageState.wrappedValue = ""
-        }
-    }
-    
-    /** Function for handling calculation.
-     * it will check the value of fuel efficiency and fuelin form,
-     * if both form is empty, it will do nothing.
-     * it not, then it will calculate by formula `total mileage = fuel efficiency * fuel in`
-     * then change state of calculate button pressed to be true in order to navigate * screen to vehicle mileage result
-     **/
-    private func handleCalculate() {
-        if fuelEfficiencyForm.isEmpty {
-            handleEmptyFormValidation(formInputErrorState: self.$isFuelEfficiencyFormErrorInput, formInputErrorMessageState: self.$fuelEfficiencyFormErrorMessage, errorState: true)
-        }
-        
-        if fuelInForm.isEmpty {
-            handleEmptyFormValidation(formInputErrorState: self.$isFuelInFormErrorInput, formInputErrorMessageState: self.$fuelInFormErrorMessage, errorState: true)
-        }
-        
-        if !fuelEfficiencyForm.isEmpty && !fuelInForm.isEmpty {
-            totalMileage = ((Double(fuelEfficiencyForm) ?? 0) * (Double(fuelInForm) ?? 0)).rounded(.toNearestOrAwayFromZero)
-            isCalculateButtonPressed = true
-            
-            path.append(VehicleMileageResultRoutingPath())
-        }
-    }
-    
-    // function for resetting form values.
-    // it will set the value of all form to be `""` equals to empty string
-    private func handleResetData() {
-        fuelEfficiencyForm = ""
-        fuelInForm = ""
-        fuelCostPerUnitForm = ""
     }
     
     var body: some View {
@@ -117,17 +41,18 @@ struct VehicleMileageScreenView: View {
                             .tracking(-1.32)
                             .foregroundColor(.appTertiaryColor)
                         
-                        UnitDropdownView(shouldShowDropdown: $shouldShowDropdown,
-                                         selectedOption: $selectedOption,
+                        UnitDropdownView(shouldShowDropdown: $vehicleMileageViewModel.shouldShowDropdown,
+                                         selectedOption: $vehicleMileageViewModel.selectedOption,
                                          placeholder: "Unit",
                                          options: UnitData.unitOptions,
                                          onOptionSelected: { option in
-                            fuelEfficiencyForm = ""
+
+                            vehicleMileageViewModel.fuelEfficiencyForm = ""
                         }, isExpandingState: { isExpanding in
                             if isExpanding {
                                 handleFinishEditing()
                             } else {
-                                shouldShowDropdown = false
+                                vehicleMileageViewModel.shouldShowDropdown = false
                             }
                         })
                     }
@@ -141,23 +66,23 @@ struct VehicleMileageScreenView: View {
                             .foregroundColor(.appTertiaryColor)
                             .padding([.top], 8.0)
                         
-                        TextField(selectedOption == UnitData.metricOption ? "E.g. 10 KM/L" : "E.g. 10 M/G", text: $fuelEfficiencyForm)
+                        TextField(vehicleMileageViewModel.selectedOption == UnitData.metricOption ? "E.g. 10 KM/L" : "E.g. 10 M/G", text: $vehicleMileageViewModel.fuelEfficiencyForm)
                             .font(.sfMonoLight(fontSize: 14.0))
                             .tracking(-1.24)
                             .keyboardType(.decimalPad)
                             .padding(12.0)
-                            .border(isFuelEfficiencyFormErrorInput ? Color.red : Color.black)
+                            .border(vehicleMileageViewModel.isFuelEfficiencyFormErrorInput ? Color.red : Color.black)
                             .onTapGesture {
-                                shouldShowDropdown = false
+                                vehicleMileageViewModel.shouldShowDropdown = false
                             }
-                            .onChange(of: fuelEfficiencyForm) { newValue in
-                                handleEmptyFormValidation(formInputErrorState: self.$isFuelEfficiencyFormErrorInput, formInputErrorMessageState: self.$fuelEfficiencyFormErrorMessage, errorState: newValue.isEmpty)
-                                fuelEfficiencyForm = TextFieldUtil.handleDecimalInput(value: newValue)
+                            .onChange(of: vehicleMileageViewModel.fuelEfficiencyForm) { newValue in
+                                vehicleMileageViewModel.validateForm()
+                                vehicleMileageViewModel.fuelEfficiencyForm = TextFieldUtil.handleDecimalInput(value: newValue)
                             }
                             .focused($isFuelEfficiencyFocused)
                         
-                        if isFuelEfficiencyFormErrorInput {
-                            Text(fuelEfficiencyFormErrorMessage)
+                        if vehicleMileageViewModel.isFuelEfficiencyFormErrorInput {
+                            Text(vehicleMileageViewModel.fuelEfficiencyFormErrorMessage)
                                 .font(.sfMonoMedium(fontSize: 12.0))
                                 .tracking(-1.96)
                                 .foregroundColor(.red)
@@ -180,24 +105,24 @@ struct VehicleMileageScreenView: View {
                             .foregroundColor(.appTertiaryColor)
                             .padding([.top], 8.0)
                         
-                        TextField(selectedOption == UnitData.metricOption ? "E.g. 10 L" : "E.g. 10 G", text: $fuelInForm)
+                        TextField(vehicleMileageViewModel.selectedOption == UnitData.metricOption ? "E.g. 10 L" : "E.g. 10 G", text: $vehicleMileageViewModel.fuelInForm)
                             .font(.sfMonoLight(fontSize: 14.0))
                             .tracking(-1.24)
                             .keyboardType(.decimalPad)
                             .padding(12.0)
-                            .border(isFuelInFormErrorInput ? Color.red : Color.black)
+                            .border(vehicleMileageViewModel.isFuelInFormErrorInput ? Color.red : Color.black)
                             .onTapGesture {
-                                shouldShowDropdown = false
+                                vehicleMileageViewModel.shouldShowDropdown = false
                             }
-                            .onChange(of: fuelInForm) { newValue in
-                                handleEmptyFormValidation(formInputErrorState: self.$isFuelInFormErrorInput, formInputErrorMessageState: self.$fuelInFormErrorMessage, errorState: newValue.isEmpty)
-                                fuelInForm = TextFieldUtil.handleDecimalInput(value: newValue)
+                            .onChange(of: vehicleMileageViewModel.fuelInForm) { newValue in
+                                vehicleMileageViewModel.validateForm()
+                                vehicleMileageViewModel.fuelInForm = TextFieldUtil.handleDecimalInput(value: newValue)
                                 
                             }
                             .focused($isFuelInFormFocused)
                         
-                        if isFuelInFormErrorInput {
-                            Text(fuelInFormErrorMessage)
+                        if vehicleMileageViewModel.isFuelInFormErrorInput {
+                            Text(vehicleMileageViewModel.fuelInFormErrorMessage)
                                 .font(.sfMonoMedium(fontSize: 12.0))
                                 .tracking(-1.96)
                                 .foregroundColor(.red)
@@ -207,23 +132,23 @@ struct VehicleMileageScreenView: View {
                     
                     // CONTENT-START: Fuel Cost per Unit
                     Group {
-                        Text("Fuel Cost per \(selectedOption == UnitData.metricOption ? "Liter" : "Gallon") (optional)")
+                        Text("Fuel Cost per \(vehicleMileageViewModel.selectedOption == UnitData.metricOption ? "Liter" : "Gallon") (optional)")
                             .font(.sfMonoRegular(fontSize: 15))
                             .tracking(-1.32)
                             .foregroundColor(.appTertiaryColor)
                             .padding([.top], 8.0)
                         
-                        TextField("E.g. 100", text: $fuelCostPerUnitForm)
+                        TextField("E.g. 100", text: $vehicleMileageViewModel.fuelCostPerUnitForm)
                             .font(.sfMonoLight(fontSize: 14.0))
                             .tracking(-1.24)
                             .keyboardType(.decimalPad)
                             .padding(12.0)
                             .border(.black)
                             .onTapGesture {
-                                shouldShowDropdown = false
+                                vehicleMileageViewModel.shouldShowDropdown = false
                             }
-                            .onChange(of: fuelCostPerUnitForm) { newValue in
-                                fuelCostPerUnitForm = TextFieldUtil.handleDecimalInput(value: newValue)
+                            .onChange(of: vehicleMileageViewModel.fuelCostPerUnitForm) { newValue in
+                                vehicleMileageViewModel.fuelCostPerUnitForm = TextFieldUtil.handleDecimalInput(value: newValue)
                             }
                             .focused($isFuelCostPerUnitFocused)
                     }
@@ -237,7 +162,14 @@ struct VehicleMileageScreenView: View {
                     Group {
                         Button {
                             handleFinishEditing()
-                            handleCalculate()
+                            vehicleMileageViewModel.validateForm()
+                            
+                            if !vehicleMileageViewModel.fuelEfficiencyForm.isEmpty && !vehicleMileageViewModel.fuelInForm.isEmpty {
+                                
+                                vehicleMileageViewModel.calculateTotalMileage()
+                                path.append(VehicleMileageResultRoutingPath())
+                            }
+                            
                         } label: {
                             Text("CALCULATE")
                                 .frame(maxWidth: .infinity)
@@ -252,7 +184,7 @@ struct VehicleMileageScreenView: View {
                         
                         Button {
                             handleFinishEditing()
-                            handleResetData()
+                            vehicleMileageViewModel.resetFormData()
                         } label: {
                             Text("RESET")
                                 .frame(maxWidth: .infinity)
@@ -286,16 +218,19 @@ struct VehicleMileageScreenView: View {
         .navigationDestination(for: VehicleMileageResultRoutingPath.self) { _ in
             VehicleMileageResultScreenView(
                 path: $path,
-                totalMileage: $totalMileage,
-                fuelEfficiency: $fuelEfficiencyForm,
-                fuelIn: $fuelInForm,
-                fuelCostPerUnit: $fuelCostPerUnitForm,
-                selectedUnit: $selectedOption
+                totalMileage: $vehicleMileageViewModel.totalMileage,
+                fuelEfficiency: $vehicleMileageViewModel.fuelEfficiencyForm,
+                fuelIn: $vehicleMileageViewModel.fuelInForm,
+                fuelCostPerUnit: $vehicleMileageViewModel.fuelCostPerUnitForm,
+                selectedUnit: $vehicleMileageViewModel.selectedOption
             )
+            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+            .environmentObject(vehicleMileageResultViewModel)
         }
-        .navigationDestination(for: FuelEfficiencyRoutingPath.self, destination: { _ in
-            FuelEfficiencyScreenView(path: $path, fuelEfficiencyValue: $fuelEfficiencyForm, selectedOption: $selectedOption)
-        })
+        .navigationDestination(for: FuelEfficiencyRoutingPath.self) { _ in
+            FuelEfficiencyScreenView(path: $path, fuelEfficiencyValue: $vehicleMileageViewModel.fuelEfficiencyForm, selectedOption: $vehicleMileageViewModel.selectedOption)
+                .environmentObject(fuelEfficiencyViewModel)
+        }
         .navigationBarTitleDisplayMode(.inline)
         .padding([.horizontal], 16.0)
         .padding([.top], 1.0)
@@ -322,7 +257,7 @@ struct VehicleMileageScreenView: View {
                 .ignoresSafeArea()
         )
         .background(Color.appPrimaryColor)
-        
+
     }
 }
 
