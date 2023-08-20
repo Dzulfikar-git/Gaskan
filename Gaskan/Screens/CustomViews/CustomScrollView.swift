@@ -76,4 +76,3 @@ struct CustomScrollView<Content: View>: UIViewRepresentable {
         }
     }
 }
-

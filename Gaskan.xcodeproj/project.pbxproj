@@ -7,12 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		262A4DF72A8F988B007EEE78 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262A4DF62A8F988B007EEE78 /* DashboardViewModel.swift */; };
+		262A4DF92A8FA39A007EEE78 /* VehicleMileageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262A4DF82A8FA39A007EEE78 /* VehicleMileageViewModel.swift */; };
+		2633B2602A90A1B4008AE763 /* VehicleMileageResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633B25F2A90A1B4008AE763 /* VehicleMileageResultViewModel.swift */; };
+		2633B2622A90AC6C008AE763 /* FuelEfficiencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633B2612A90AC6C008AE763 /* FuelEfficiencyViewModel.swift */; };
+		2633B2642A90E899008AE763 /* FuelEfficiencyResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633B2632A90E899008AE763 /* FuelEfficiencyResultViewModel.swift */; };
+		2633B2662A9107FC008AE763 /* RefuelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633B2652A9107FC008AE763 /* RefuelViewModel.swift */; };
+		2633B2682A91C9C3008AE763 /* NewTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2633B2672A91C9C3008AE763 /* NewTripViewModel.swift */; };
 		263C38B029D723D600A8676C /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263C38AF29D723D600A8676C /* MainScreenView.swift */; };
 		266246D629D71F8A00F8B699 /* GaskanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266246D529D71F8A00F8B699 /* GaskanApp.swift */; };
 		266246DA29D71F8B00F8B699 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 266246D929D71F8B00F8B699 /* Assets.xcassets */; };
 		2673A3A029EED9D900E32001 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2673A39F29EED9D900E32001 /* LocationDataManager.swift */; };
 		2673A3A229EEDE5100E32001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2673A3A129EEDE5100E32001 /* AppDelegate.swift */; };
 		2673A3A529EEDE9F00E32001 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2673A3A429EEDE9F00E32001 /* AppConstants.swift */; };
+		2675E4A82A8B1C3A00BDA18D /* GaskanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2675E4A72A8B1C3A00BDA18D /* GaskanTests.swift */; };
+		2675E4B02A8B1E8400BDA18D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2675E4AF2A8B1E8400BDA18D /* .swiftlint.yml */; };
 		26D1B61729E64815007E6154 /* TextFieldUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B61629E64815007E6154 /* TextFieldUtil.swift */; };
 		26D1B63329E6489E007E6154 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63029E6489E007E6154 /* Font.swift */; };
 		26D1B63429E6489E007E6154 /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D1B63129E6489E007E6154 /* Spacer.swift */; };
@@ -56,7 +65,24 @@
 		6C38617029EC299A00A471CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38616F29EC299A00A471CD /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2675E4A92A8B1C3A00BDA18D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 266246CA29D71F8A00F8B699 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 266246D129D71F8A00F8B699;
+			remoteInfo = Gaskan;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		262A4DF62A8F988B007EEE78 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		262A4DF82A8FA39A007EEE78 /* VehicleMileageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMileageViewModel.swift; sourceTree = "<group>"; };
+		2633B25F2A90A1B4008AE763 /* VehicleMileageResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMileageResultViewModel.swift; sourceTree = "<group>"; };
+		2633B2612A90AC6C008AE763 /* FuelEfficiencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyViewModel.swift; sourceTree = "<group>"; };
+		2633B2632A90E899008AE763 /* FuelEfficiencyResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelEfficiencyResultViewModel.swift; sourceTree = "<group>"; };
+		2633B2652A9107FC008AE763 /* RefuelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefuelViewModel.swift; sourceTree = "<group>"; };
+		2633B2672A91C9C3008AE763 /* NewTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTripViewModel.swift; sourceTree = "<group>"; };
 		263C38AE29D7231900A8676C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		263C38AF29D723D600A8676C /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		266246D229D71F8A00F8B699 /* Gaskan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gaskan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +92,9 @@
 		2673A39F29EED9D900E32001 /* LocationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataManager.swift; sourceTree = "<group>"; };
 		2673A3A129EEDE5100E32001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2673A3A429EEDE9F00E32001 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		2675E4A52A8B1C3A00BDA18D /* GaskanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GaskanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2675E4A72A8B1C3A00BDA18D /* GaskanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaskanTests.swift; sourceTree = "<group>"; };
+		2675E4AF2A8B1E8400BDA18D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		26D1B61629E64815007E6154 /* TextFieldUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldUtil.swift; sourceTree = "<group>"; };
 		26D1B62829E6488D007E6154 /* SF-Mono-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Mono-Medium.otf"; sourceTree = "<group>"; };
 		26D1B62929E6488D007E6154 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
@@ -117,9 +146,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2675E4A22A8B1C3A00BDA18D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		262A4DF52A8F97A2007EEE78 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				262A4DF62A8F988B007EEE78 /* DashboardViewModel.swift */,
+				262A4DF82A8FA39A007EEE78 /* VehicleMileageViewModel.swift */,
+				2633B25F2A90A1B4008AE763 /* VehicleMileageResultViewModel.swift */,
+				2633B2612A90AC6C008AE763 /* FuelEfficiencyViewModel.swift */,
+				2633B2632A90E899008AE763 /* FuelEfficiencyResultViewModel.swift */,
+				2633B2652A9107FC008AE763 /* RefuelViewModel.swift */,
+				2633B2672A91C9C3008AE763 /* NewTripViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		263C389E29D7200600A8676C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				266246D429D71F8A00F8B699 /* Gaskan */,
+				2675E4A62A8B1C3A00BDA18D /* GaskanTests */,
 				266246D329D71F8A00F8B699 /* Products */,
 				6C38616C29EC0E0700A471CD /* Frameworks */,
 			);
@@ -201,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				266246D229D71F8A00F8B699 /* Gaskan.app */,
+				2675E4A52A8B1C3A00BDA18D /* GaskanTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,6 +260,7 @@
 		266246D429D71F8A00F8B699 /* Gaskan */ = {
 			isa = PBXGroup;
 			children = (
+				262A4DF52A8F97A2007EEE78 /* ViewModels */,
 				26D1B65229E64B78007E6154 /* Routing */,
 				26D1B64F29E64AF8007E6154 /* Data */,
 				266246D929D71F8B00F8B699 /* Assets.xcassets */,
@@ -221,6 +274,7 @@
 				263C389E29D7200600A8676C /* Screens */,
 				26D1B61529E647FF007E6154 /* Utils */,
 				2673A3A129EEDE5100E32001 /* AppDelegate.swift */,
+				2675E4AF2A8B1E8400BDA18D /* .swiftlint.yml */,
 			);
 			path = Gaskan;
 			sourceTree = "<group>";
@@ -239,6 +293,14 @@
 				2673A3A429EEDE9F00E32001 /* AppConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		2675E4A62A8B1C3A00BDA18D /* GaskanTests */ = {
+			isa = PBXGroup;
+			children = (
+				2675E4A72A8B1C3A00BDA18D /* GaskanTests.swift */,
+			);
+			path = GaskanTests;
 			sourceTree = "<group>";
 		};
 		26D1B61529E647FF007E6154 /* Utils */ = {
@@ -343,6 +405,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 266246E029D71F8B00F8B699 /* Build configuration list for PBXNativeTarget "Gaskan" */;
 			buildPhases = (
+				2675E4AE2A8B1D5D00BDA18D /* ShellScript */,
 				266246CE29D71F8A00F8B699 /* Sources */,
 				266246CF29D71F8A00F8B699 /* Frameworks */,
 				266246D029D71F8A00F8B699 /* Resources */,
@@ -356,6 +419,24 @@
 			productReference = 266246D229D71F8A00F8B699 /* Gaskan.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2675E4A42A8B1C3A00BDA18D /* GaskanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2675E4AB2A8B1C3A00BDA18D /* Build configuration list for PBXNativeTarget "GaskanTests" */;
+			buildPhases = (
+				2675E4A12A8B1C3A00BDA18D /* Sources */,
+				2675E4A22A8B1C3A00BDA18D /* Frameworks */,
+				2675E4A32A8B1C3A00BDA18D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2675E4AA2A8B1C3A00BDA18D /* PBXTargetDependency */,
+			);
+			name = GaskanTests;
+			productName = GaskanTests;
+			productReference = 2675E4A52A8B1C3A00BDA18D /* GaskanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -363,11 +444,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					266246D129D71F8A00F8B699 = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					2675E4A42A8B1C3A00BDA18D = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 266246D129D71F8A00F8B699;
 					};
 				};
 			};
@@ -385,6 +470,7 @@
 			projectRoot = "";
 			targets = (
 				266246D129D71F8A00F8B699 /* Gaskan */,
+				2675E4A42A8B1C3A00BDA18D /* GaskanTests */,
 			);
 		};
 /* End PBXProject section */
@@ -404,21 +490,51 @@
 				26D1B66029E650B5007E6154 /* SF-Pro-Text-SemiboldItalic.otf in Resources */,
 				266246DA29D71F8B00F8B699 /* Assets.xcassets in Resources */,
 				26D1B65829E650AF007E6154 /* Preview Assets.xcassets in Resources */,
+				2675E4B02A8B1E8400BDA18D /* .swiftlint.yml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2675E4A32A8B1C3A00BDA18D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2675E4AE2A8B1D5D00BDA18D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		266246CE29D71F8A00F8B699 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2633B2622A90AC6C008AE763 /* FuelEfficiencyViewModel.swift in Sources */,
 				6C38616929EBEADC00A471CD /* Persistence.swift in Sources */,
 				26D1B63E29E64990007E6154 /* OnboardingFirstView.swift in Sources */,
 				6C38613029E6604E00A471CD /* DashboardView.swift in Sources */,
 				6C38613629EA68BB00A471CD /* CalculationType.swift in Sources */,
 				263C38B029D723D600A8676C /* MainScreenView.swift in Sources */,
+				2633B2602A90A1B4008AE763 /* VehicleMileageResultViewModel.swift in Sources */,
 				6C38613229E66EE000A471CD /* ChildCardView.swift in Sources */,
 				6C38614029EBBB5300A471CD /* RefuelScreenView.swift in Sources */,
 				26D1B63329E6489E007E6154 /* Font.swift in Sources */,
@@ -430,13 +546,17 @@
 				26D1B66429E65A3D007E6154 /* FuelEfficiencyScreenView.swift in Sources */,
 				2673A3A529EEDE9F00E32001 /* AppConstants.swift in Sources */,
 				26D1B64629E64A06007E6154 /* CircleChevronDisclosureStyle.swift in Sources */,
+				2633B2642A90E899008AE763 /* FuelEfficiencyResultViewModel.swift in Sources */,
 				2673A3A029EED9D900E32001 /* LocationDataManager.swift in Sources */,
 				266246D629D71F8A00F8B699 /* GaskanApp.swift in Sources */,
+				2633B2662A9107FC008AE763 /* RefuelViewModel.swift in Sources */,
+				262A4DF92A8FA39A007EEE78 /* VehicleMileageViewModel.swift in Sources */,
 				26D1B61729E64815007E6154 /* TextFieldUtil.swift in Sources */,
 				6C38614529EBC0C100A471CD /* NewTripScreenView.swift in Sources */,
 				26D1B63D29E64990007E6154 /* OnboardingThirdView.swift in Sources */,
 				26D1B65629E64B81007E6154 /* VehicleMileageRouting.swift in Sources */,
 				6C38613429EA600600A471CD /* HistoryView.swift in Sources */,
+				262A4DF72A8F988B007EEE78 /* DashboardViewModel.swift in Sources */,
 				26D1B63529E6489E007E6154 /* Color.swift in Sources */,
 				6C38616729EBE9DF00A471CD /* Gaskan.xcdatamodeld in Sources */,
 				26D1B65129E64B08007E6154 /* UnitData.swift in Sources */,
@@ -450,11 +570,28 @@
 				26D1B65529E64B81007E6154 /* FuelEfficiencyRouting.swift in Sources */,
 				26D1B64D29E64A84007E6154 /* VehicleMileageResultScreenView.swift in Sources */,
 				26D1B63C29E64990007E6154 /* OnboardingSecondView.swift in Sources */,
+				2633B2682A91C9C3008AE763 /* NewTripViewModel.swift in Sources */,
 				26D1B64A29E64A06007E6154 /* UnitDropdownView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2675E4A12A8B1C3A00BDA18D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2675E4A82A8B1C3A00BDA18D /* GaskanTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2675E4AA2A8B1C3A00BDA18D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 266246D129D71F8A00F8B699 /* Gaskan */;
+			targetProxy = 2675E4A92A8B1C3A00BDA18D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		266246DE29D71F8B00F8B699 /* Debug */ = {
@@ -579,7 +716,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gaskan/Preview Content\"";
-				DEVELOPMENT_TEAM = 57DDT5D7L5;
+				DEVELOPMENT_TEAM = 2W2FLHT9EF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Gaskan/Info.plist;
@@ -597,7 +734,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.oleng.Gaskan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzul.Gaskan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -613,7 +750,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Gaskan/Preview Content\"";
-				DEVELOPMENT_TEAM = 57DDT5D7L5;
+				DEVELOPMENT_TEAM = 2W2FLHT9EF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Gaskan/Info.plist;
@@ -631,11 +768,49 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.oleng.Gaskan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzul.Gaskan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2675E4AC2A8B1C3A00BDA18D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2W2FLHT9EF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzul.GaskanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gaskan.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Gaskan";
+			};
+			name = Debug;
+		};
+		2675E4AD2A8B1C3A00BDA18D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2W2FLHT9EF;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dzul.GaskanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gaskan.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Gaskan";
 			};
 			name = Release;
 		};
@@ -656,6 +831,15 @@
 			buildConfigurations = (
 				266246E129D71F8B00F8B699 /* Debug */,
 				266246E229D71F8B00F8B699 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2675E4AB2A8B1C3A00BDA18D /* Build configuration list for PBXNativeTarget "GaskanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2675E4AC2A8B1C3A00BDA18D /* Debug */,
+				2675E4AD2A8B1C3A00BDA18D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

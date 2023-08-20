@@ -13,7 +13,7 @@ struct DistanceSegmentedControlView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            ForEach(options.indices, id:\.self) { index in
+            ForEach(options.indices, id: \.self) { index in
                 let isSelected = preselectedIndex == index
                 ZStack {
                     Rectangle().fill(Color.appPrimaryColor)
