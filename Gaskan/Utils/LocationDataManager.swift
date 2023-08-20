@@ -10,10 +10,9 @@ import CoreLocation
 import BackgroundTasks
 import CoreData
 
-class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObject {
+class LocationDataManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     static let shared = LocationDataManager()
     var locationManager = CLLocationManager()
-    
     
     @Published var isLocationTrackingEnabled: Bool = false
     @Published var isLocationAccessPermitted: Bool = false
@@ -31,10 +30,8 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
         locationManager.requestAlwaysAuthorization()
         locationManager.allowsBackgroundLocationUpdates = true
         
-        
         super.init()
         locationManager.delegate = self
-        print("INIT LDM")
         startSpeedCheck()
         handleDistanceTracking()
         
@@ -85,7 +82,7 @@ class LocationDataManager : NSObject, CLLocationManagerDelegate, ObservableObjec
                                 newItem.id = UUID()
                                 newItem.type = CalculationType.newTrip.rawValue
                                 newItem.timestamp = Date()
-                                newItem.totalMileage =  hasCalculation[0].unit == UnitData.metricOption.value ?  Float(self.traveledDistance / 1000) : Float(self.traveledDistance / 0.000621371)
+                                newItem.totalMileage = hasCalculation[0].unit == UnitData.metricOption.value ? Float(self.traveledDistance / 1000) : Float(self.traveledDistance / 0.000621371)
                                 newItem.fuelEfficiency = 0.0
                                 newItem.totalFuelCost = 0.0
                                 
