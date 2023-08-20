@@ -9,69 +9,16 @@ import SwiftUI
 
 struct NewTripScreenView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject var newTripViewModel: NewTripViewModel
     
-    // STATE START: navigation path routing state
     @Binding var path: NavigationPath
-    // STATE END: navigation routing state
-    
-    // STATE START: fuel efficiency value
-    @State private var fuelEfficiencyValue: String = "0.0"
-    // STATE END: fuel efficiency value
-    
-    // STATE START: dropdown state
-    @State private var shouldShowDropdown: Bool = false
-    @State private var isDropdownExpanding: Bool = false
-    // STATE END: dropdown state
-    
-    // STATE START: unit selection state
     @Binding var selectedOption: UnitDropdownOption?
-    // STATE END: unit selection state
     
-    // STATE START: distance view selected state
-    @State private var selectedDistanceView: Int = 0
-    // STATE END: distance view selected state
-    
-    // STATE START: distance form state
-    @State private var distanceForm: String = ""
-    @State private var isDistanceFormErrorInput: Bool = false
-    @State private var distanceFormErrorMessage: String = ""
     @FocusState private var isDistanceFormFocused: Bool
-    // STATE END: distance form state
-    
-    // STATE START: odometer start form state
-    @State private var odometerStartForm: String = ""
-    @State private var isOdometerStartFormErrorInput: Bool = false
-    @State private var odometerStartFormErrorMessage: String = ""
     @FocusState private var isOdometerStartFormFocused: Bool
-    // STATE END: odometer start form state
-    
-    // STATE START: odometer end form state
-    @State private var odometerEndForm: String = ""
-    @State private var isOdometerEndFormErrorInput: Bool = false
-    @State private var odometerEndFormErrorMessage: String = ""
     @FocusState private var isOdometerEndFormFocused: Bool
-    // STATE END: odometer start form state
     
     var totalMileage: Float = 0.0
-    
-    @State private var showAlert = false
-    @State private var alertTitle = ""
-    @State private var alertDescription = ""
-    
-    /** Function to handle empty form validaton
-     *  @param `formInputErrorState` for form input error state binding
-     *  @param `formInputErrorMessageState` for error message
-     *  @param `errorState` state of the error either true or false to set error state data
-     */
-    private func handleEmptyFormValidation(formInputErrorState: Binding<Bool>, formInputErrorMessageState: Binding<String>, errorState: Bool) {
-        if errorState {
-            formInputErrorState.wrappedValue = true
-            formInputErrorMessageState.wrappedValue = "Please fill the field !"
-        } else {
-            formInputErrorState.wrappedValue = false
-            formInputErrorMessageState.wrappedValue = ""
-        }
-    }
     
     // function for handling finish editing false.
     // it will set the form focused to `false` so it will stop edit in all textfield
@@ -88,79 +35,35 @@ struct NewTripScreenView: View {
      * then change state of calculate button pressed to be true in order to navigate screen to fuel efficiency result.
      */
     private func handleCalculate() {
-        if selectedDistanceView == 0 { // using distance
-            if distanceForm.isEmpty {
-                handleEmptyFormValidation(formInputErrorState: self.$isDistanceFormErrorInput, formInputErrorMessageState: self.$distanceFormErrorMessage, errorState: true)
-            }
-            
-            if !distanceForm.isEmpty {
-                if totalMileage <= Float(distanceForm) ?? 0.0 {
-                    showAlert = true
-                    alertTitle = "Distance Exceeds Total Mileage"
-                    alertDescription = "Please input the distance below your current total mileage"
+        newTripViewModel.validateForm()
+        if newTripViewModel.selectedDistanceView == 0 { // using distance
+            if !newTripViewModel.distanceForm.isEmpty {
+                if totalMileage <= Float(newTripViewModel.distanceForm) ?? 0.0 {
+                    newTripViewModel.showAlert = true
+                    newTripViewModel.alertTitle = "Distance Exceeds Total Mileage"
+                    newTripViewModel.alertDescription = "Please input the distance below your current total mileage"
                     return
                 }
-                
-                addItem()
+
+                newTripViewModel.addItem(viewContext: viewContext, totalMileage: totalMileage, fuelEfficiency: (Float(newTripViewModel.fuelEfficiencyValue) ?? 0), unit: selectedOption!)
                 path.removeLast(path.count)
             }
             
         } else { // using odometer
-            if odometerStartForm.isEmpty {
-                handleEmptyFormValidation(formInputErrorState: self.$isOdometerStartFormErrorInput, formInputErrorMessageState: self.$odometerStartFormErrorMessage, errorState: true)
-            }
-            
-            if odometerEndForm.isEmpty {
-                handleEmptyFormValidation(formInputErrorState: self.$isOdometerEndFormErrorInput, formInputErrorMessageState: self.$odometerEndFormErrorMessage, errorState: true)
-            }
-            
-            if !odometerStartForm.isEmpty && !odometerEndForm.isEmpty {
-                if totalMileage <= Float(distanceForm) ?? 0.0 {
-                    showAlert = true
-                    alertTitle = "Distance Exceeds Total Mileage"
-                    alertDescription = "Please input the distance below your current total mileage"
+            if !newTripViewModel.odometerStartForm.isEmpty && !newTripViewModel.odometerEndForm.isEmpty {
+                if totalMileage <= Float(newTripViewModel.distanceForm) ?? 0.0 {
+                    newTripViewModel.showAlert = true
+                    newTripViewModel.alertTitle = "Distance Exceeds Total Mileage"
+                    newTripViewModel.alertDescription = "Please input the distance below your current total mileage"
                     return
                 }
                 
-                addItem()
+//                addItem()
                 path.removeLast(path.count)
             }
             
         }
         
-    }
-    
-    private func addItem() {
-        withAnimation {
-            print("[NewTripScreenView][addItem]")
-            
-            let newItem = Item(context: viewContext)
-            newItem.id = UUID()
-            newItem.type = CalculationType.newTrip.rawValue
-            newItem.timestamp = Date()
-            newItem.totalMileage = Float(distanceForm) ?? 0.0
-            newItem.fuelEfficiency = Float(fuelEfficiencyValue) ?? 0.0
-            newItem.totalFuelCost = 0.0
-            newItem.unit = selectedOption?.value
-            
-            do {
-                print("[NewTripScreenView][addItem]")
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-    
-    // function for resetting form values.
-    // it will set the value of all form to be `""` equals to empty string
-    private func handleReset() {
-        distanceForm = ""
-        odometerStartForm = ""
-        odometerEndForm = ""
     }
     
     var body: some View {
@@ -171,10 +74,10 @@ struct NewTripScreenView: View {
                         .frame(idealHeight: 24.0)
                         .fixedSize()
                     
-                    DistanceSegmentedControlView(preselectedIndex: $selectedDistanceView, options: ["DISTANCE", "ODOMETER"])
+                    DistanceSegmentedControlView(preselectedIndex: $newTripViewModel.selectedDistanceView, options: ["DISTANCE", "ODOMETER"])
                     
                     // View Selection
-                    if selectedDistanceView == 0 {
+                    if newTripViewModel.selectedDistanceView == 0 {
                         
                         // CONTENT-START: Distance
                         Group {
@@ -184,23 +87,23 @@ struct NewTripScreenView: View {
                                 .foregroundColor(.appTertiaryColor)
                                 .padding([.top], 8.0)
                             
-                            TextField(selectedOption == UnitData.metricOption ? "E.g. 100 KM" : "E.g. 100 Miles", text: $distanceForm)
+                            TextField(selectedOption == UnitData.metricOption ? "E.g. 100 KM" : "E.g. 100 Miles", text: $newTripViewModel.distanceForm)
                                 .font(.sfMonoLight(fontSize: 14.0))
                                 .tracking(-1.24)
                                 .keyboardType(.decimalPad)
                                 .padding(12.0)
-                                .border(isDistanceFormErrorInput ? Color.red : Color.black)
+                                .border(newTripViewModel.isDistanceFormErrorInput ? Color.red : Color.black)
                                 .onTapGesture {
-                                    shouldShowDropdown = false
+                                    newTripViewModel.shouldShowDropdown = false
                                 }
-                                .onChange(of: distanceForm) { newValue in
-                                    handleEmptyFormValidation(formInputErrorState: self.$isDistanceFormErrorInput, formInputErrorMessageState: self.$distanceFormErrorMessage, errorState: newValue.isEmpty)
-                                    distanceForm = TextFieldUtil.handleDecimalInput(value: newValue)
+                                .onChange(of: newTripViewModel.distanceForm) { newValue in
+                                    newTripViewModel.validateForm()
+                                    newTripViewModel.distanceForm = TextFieldUtil.handleDecimalInput(value: newValue)
                                 }
                                 .focused($isDistanceFormFocused)
                             
-                            if isDistanceFormErrorInput {
-                                Text(distanceFormErrorMessage)
+                            if newTripViewModel.isDistanceFormErrorInput {
+                                Text(newTripViewModel.distanceFormErrorMessage)
                                     .font(.sfMonoMedium(fontSize: 12.0))
                                     .tracking(-1.96)
                                     .foregroundColor(.red)
@@ -216,23 +119,23 @@ struct NewTripScreenView: View {
                                 .foregroundColor(.appTertiaryColor)
                                 .padding([.top], 8.0)
                             
-                            TextField(selectedOption == UnitData.metricOption ? "E.g. 15000 KM" : "E.g. 1500 Miles", text: $odometerStartForm)
+                            TextField(selectedOption == UnitData.metricOption ? "E.g. 15000 KM" : "E.g. 1500 Miles", text: $newTripViewModel.odometerStartForm)
                                 .font(.sfMonoLight(fontSize: 14.0))
                                 .tracking(-1.24)
                                 .keyboardType(.decimalPad)
                                 .padding(12)
-                                .border(isOdometerStartFormErrorInput ? Color.red : Color.black)
-                                .onChange(of: odometerStartForm) { newValue in
-                                    handleEmptyFormValidation(formInputErrorState: self.$isOdometerStartFormErrorInput, formInputErrorMessageState: self.$odometerStartFormErrorMessage, errorState: newValue.isEmpty)
-                                    odometerStartForm = TextFieldUtil.handleDecimalInput(value: newValue)
+                                .border(newTripViewModel.isOdometerStartFormErrorInput ? Color.red : Color.black)
+                                .onChange(of: newTripViewModel.odometerStartForm) { newValue in
+                                    newTripViewModel.validateForm()
+                                    newTripViewModel.odometerStartForm = TextFieldUtil.handleDecimalInput(value: newValue)
                                 }
                                 .onTapGesture {
-                                    shouldShowDropdown = false
+                                    newTripViewModel.shouldShowDropdown = false
                                 }
                                 .focused($isOdometerStartFormFocused)
                             
-                            if isOdometerStartFormErrorInput {
-                                Text(odometerStartFormErrorMessage)
+                            if newTripViewModel.isOdometerStartFormErrorInput {
+                                Text(newTripViewModel.odometerStartFormErrorMessage)
                                     .font(.sfMonoMedium(fontSize: 12.0))
                                     .tracking(-1.96)
                                     .foregroundColor(.red)
@@ -248,23 +151,23 @@ struct NewTripScreenView: View {
                                 .foregroundColor(.appTertiaryColor)
                                 .padding([.top], 8.0)
                             
-                            TextField(selectedOption == UnitData.metricOption ? "E.g. 15100 KM" : "E.g. 1600 Miles", text: $odometerEndForm)
+                            TextField(selectedOption == UnitData.metricOption ? "E.g. 15100 KM" : "E.g. 1600 Miles", text: $newTripViewModel.odometerEndForm)
                                 .font(.sfMonoLight(fontSize: 14.0))
                                 .tracking(-1.24)
                                 .keyboardType(.decimalPad)
                                 .padding(12)
-                                .border(isOdometerEndFormErrorInput ? Color.red : Color.black)
-                                .onChange(of: odometerEndForm) { newValue in
-                                    handleEmptyFormValidation(formInputErrorState: self.$isOdometerEndFormErrorInput, formInputErrorMessageState: self.$odometerEndFormErrorMessage, errorState: newValue.isEmpty)
-                                    odometerEndForm = TextFieldUtil.handleDecimalInput(value: newValue)
+                                .border(newTripViewModel.isOdometerEndFormErrorInput ? Color.red : Color.black)
+                                .onChange(of: newTripViewModel.odometerEndForm) { newValue in
+                                    newTripViewModel.validateForm()
+                                    newTripViewModel.odometerEndForm = TextFieldUtil.handleDecimalInput(value: newValue)
                                 }
                                 .onTapGesture {
-                                    shouldShowDropdown = false
+                                    newTripViewModel.shouldShowDropdown = false
                                 }
                                 .focused($isOdometerEndFormFocused)
                             
-                            if isOdometerEndFormErrorInput {
-                                Text(odometerEndFormErrorMessage)
+                            if newTripViewModel.isOdometerEndFormErrorInput {
+                                Text(newTripViewModel.odometerEndFormErrorMessage)
                                     .font(.sfMonoMedium(fontSize: 12.0))
                                     .tracking(-1.96)
                                     .foregroundColor(.red)
@@ -292,7 +195,7 @@ struct NewTripScreenView: View {
                     )
                     
                     Button {
-                        handleReset()
+                        newTripViewModel.resetForm()
                     } label: {
                         Text("RESET")
                             .frame(maxWidth: .infinity)
@@ -304,8 +207,8 @@ struct NewTripScreenView: View {
                 }
                 .frame(height: geometry.size.height)
             }
-            .alert(isPresented: $showAlert) {
-                        Alert(title: Text(alertTitle), message: Text(alertDescription), dismissButton: .default(Text("OK")))
+            .alert(isPresented: $newTripViewModel.showAlert) {
+                Alert(title: Text(newTripViewModel.alertTitle), message: Text(newTripViewModel.alertDescription), dismissButton: .default(Text("OK")))
                     }
             .scrollDisabled(geometry.size.height > 700 ? true : false)
             .navigationBarTitleDisplayMode(.inline)
@@ -359,8 +262,10 @@ struct NewTripScreenView_Previews: PreviewProvider {
         @State var path: NavigationPath = NavigationPath()
         @State var fuelEfficiencyValue: String = "0.0"
         @State var selectedOption: UnitDropdownOption? = UnitData.metricOption
+        @StateObject var newTripViewModel = NewTripViewModel()
         var body: some View {
                 FuelEfficiencyScreenView(path: $path, fuelEfficiencyValue: $fuelEfficiencyValue, selectedOption: $selectedOption)
+                    .environmentObject(newTripViewModel)
         }
     }
     
