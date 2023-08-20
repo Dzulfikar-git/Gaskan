@@ -11,6 +11,11 @@ import CoreData
 struct DashboardView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var locationDataManager: LocationDataManager
+    @EnvironmentObject private var dashboardViewModel: DashboardViewModel
+    
+    @StateObject private var vehicleMileageViewModel: VehicleMileageViewModel = .init()
+    @StateObject private var refuelViewModel: RefuelViewModel = .init()
+    @StateObject private var newTripViewModel: NewTripViewModel = .init()
     
     @Binding var path: NavigationPath
     
@@ -21,16 +26,6 @@ struct DashboardView: View {
     @State private var buttonTimer: Timer?
     
     @State private var isEditCalculation = false
-    
-    @State private var remainingMileage: Double = 0
-    @State private var mileageDate: Date?
-    @State private var unit: UnitDropdownOption? = UnitData.metricOption
-    
-    @State private var fuelEfficiency: Double = 0
-    
-    @State private var totalCosts: Int = 0
-    
-    @State private var prevMileage: Double = 0
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
@@ -60,10 +55,10 @@ struct DashboardView: View {
                         
                         CardView(
                             title: "Your Vehicle’s Remaining Mileage",
-                            description: formatDateToString(date: mileageDate),
-                            value: String(format: "%.2f", remainingMileage),
-                            unit: unit == UnitData.metricOption ? "  km" : "  miles",
-                            isShowButton: items.contains(where: { getCalculationType(type: String($0.type ?? "")) == CalculationType.newCalculation })) {
+                            description: dashboardViewModel.formatDateToString(date: dashboardViewModel.mileageDate),
+                            value: String(format: "%.2f", dashboardViewModel.remainingMileage),
+                            unit: dashboardViewModel.unit == UnitData.metricOption ? "  km" : "  miles",
+                            isShowButton: items.contains(where: { dashboardViewModel.getCalculationType(type: String($0.type ?? "")) == CalculationType.newCalculation })) {
                                 path.append(RefuelRoutingPath())
                             } onClickedMinus: {
                                 path.append(NewTripRoutingPath())
@@ -72,14 +67,13 @@ struct DashboardView: View {
                         HStack {
                             ChildCardView(
                                 title: "Fuel Efficiency",
-                                value: String(format: "%.2f", fuelEfficiency),
-                                unit: unit == UnitData.metricOption ? "KM/L" : "M/G"
+                                value: String(format: "%.2f", dashboardViewModel.fuelEfficiency),
+                                unit: dashboardViewModel.unit == UnitData.metricOption ? "KM/L" : "M/G"
                             )
-                            
                             
                             ChildCardView(
                                 title: "Total Fuel Costs",
-                                value: "\(totalCosts)"
+                                value: "\(dashboardViewModel.totalCosts)"
                             )
                         }
                         
@@ -106,31 +100,30 @@ struct DashboardView: View {
 
                             }
                             
-                            
                             VStack(spacing: 0) {
                                 ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
                                     
-                                    let calculationType: CalculationType = getCalculationType(type: String(item.type ?? ""))
-                                    
-                                    let mileageAmount: Double =  Double(item.totalMileage)
+                                    let calculationType: CalculationType = dashboardViewModel.getCalculationType(type: String(item.type ?? ""))
+                         
+                                    let mileageAmount: Double = Double(item.totalMileage)
                                     
                                     let date = item.timestamp
                                     
                                     HistoryView(
                                         calculationType: calculationType,
                                         mileageAmount: mileageAmount,
-                                        unit: unit,
+                                        unit: dashboardViewModel.unit,
                                         date: date,
                                         isShowDeleteButton: $isEditCalculation,
                                         onDelete: {
-                                            updateRemainingMileage()
-                                            deleteItem(item: item)
+                                            dashboardViewModel.updateRemainingMileage(items: items)
+                                            dashboardViewModel.deleteItem(viewContext: viewContext,item: item)
                                         }
                                     )
                                     .frame(width: geometry.size.width)
                                     .fixedSize()
                                     .onAppear {
-                                        updateRemainingMileage()
+                                        dashboardViewModel.updateRemainingMileage(items: items)
                                     }
                                 }
                             }
@@ -139,16 +132,15 @@ struct DashboardView: View {
                             // Add a default view to the VStack when items is empty
                             Text("No items found")
                             .onAppear{
-                                remainingMileage = 0
-                                fuelEfficiency = 0
-                                totalCosts = 0
+                                dashboardViewModel.remainingMileage = 0
+                                dashboardViewModel.fuelEfficiency = 0
+                                dashboardViewModel.totalCosts = 0
                             }
                             .font(.sfMonoBold(fontSize: 16.0))
                             .foregroundColor(.appTertiaryColor)
                             .tracking(-1.41)
                             
                         }
-                        
                         
                         Spacer()
                             .frame(idealHeight: 84)
@@ -209,16 +201,19 @@ struct DashboardView: View {
                 path.append(VehicleMileageRoutingPath())
             }
             
-            updateRemainingMileage()
+            dashboardViewModel.updateRemainingMileage(items: items)
         }
         .navigationDestination(for: VehicleMileageRoutingPath.self) { _ in
                 VehicleMileageScreenView(path: $path)
+                .environmentObject(vehicleMileageViewModel)
         }
         .navigationDestination(for: RefuelRoutingPath.self) { _ in
-                RefuelScreenView(path: $path, selectedOption: $unit)
+            RefuelScreenView(path: $path, selectedOption: $dashboardViewModel.unit)
+                .environmentObject(refuelViewModel)
         }
         .navigationDestination(for: NewTripRoutingPath.self) { _ in
-            NewTripScreenView(path: $path, selectedOption: $unit, totalMileage: Float(remainingMileage))
+            NewTripScreenView(path: $path, selectedOption: $dashboardViewModel.unit, totalMileage: Float(dashboardViewModel.remainingMileage))
+                .environmentObject(newTripViewModel)
         }
         .padding([.horizontal], 16.0)
         .padding([.top], 1.0)
@@ -248,161 +243,6 @@ struct DashboardView: View {
         .ignoresSafeArea()
     }
     
-    private func updateRemainingMileage() {
-        // Update the UI asynchronously
-        DispatchQueue.main.async {
-            withAnimation {
-                if let lastItem = items.last {
-                    remainingMileage = Double(lastItem.totalMileage)
-                    print("[updateRemainingMileage][lastItem.fuelEfficiency]", lastItem.fuelEfficiency)
-                    mileageDate = lastItem.timestamp
-                    fuelEfficiency = Double(lastItem.fuelEfficiency)
-                    totalCosts = Int(lastItem.totalFuelCost)
-                    unit = getUnit(unit: String(lastItem.unit ?? ""))
-                    
-                    // Loop through the remaining items in the array and adjust the remainingMileage value based on their calculationType
-                    for index in (0..<items.count).reversed() {
-                        let item = items[index]
-                        let calculationType = getCalculationType(type: String(item.type ?? ""))
-                        print("[updateRemainingMileage][calculationType]", calculationType)
-                        
-                        let mileageAmount = Double(item.totalMileage)
-                        print("[updateRemainingMileage][mileageAmount]", mileageAmount)
-                        
-                        let fuelEff = Double(item.fuelEfficiency)
-                        
-                        let totalFuelCost = Int(item.totalFuelCost)
-                        
-                        switch calculationType {
-                        case .refuel:
-                            remainingMileage += mileageAmount
-                            fuelEfficiency = fuelEff
-                            totalCosts += totalFuelCost
-                        case .newTrip:
-                            remainingMileage -= mileageAmount
-                            totalCosts -= totalFuelCost
-                        default:
-                            break
-                        }
-                    }
-                    
-                    print("[updateRemainingMileage][remainingMileage]", remainingMileage)
-                } else {
-                    remainingMileage = 0
-                    mileageDate = nil
-                    fuelEfficiency = 0
-                    totalCosts = 0
-                }
-            }
-        }
-    }
-    
-    private func getUnit(unit: String) -> UnitDropdownOption? {
-        print("[getUnit][unit]", unit)
-        print("[getUnit][Int64(UnitData.metricOption.hashValue)]", Int64(UnitData.metricOption.hashValue))
-        print("[getUnit][Int64(UnitData.usOption.hashValue)]", Int64(UnitData.usOption.hashValue))
-        
-        switch unit {
-        case UnitData.metricOption.value:
-            return UnitData.metricOption
-        case UnitData.usOption.value:
-            return UnitData.usOption
-        default:
-            return nil
-        }
-    }
-    
-    private func deleteAllItems() {
-        for item in items {
-            deleteItem(item: item)
-        }
-    }
-    
-    private func deleteItem(item: Item) {
-        withAnimation {
-            viewContext.delete(item)
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-    
-    func getCalculationType(type: String) -> CalculationType {
-        switch type {
-        case CalculationType.newTrip.rawValue:
-            return .newTrip
-        case CalculationType.refuel.rawValue:
-            return .refuel
-        case CalculationType.newCalculation.rawValue:
-            return .newCalculation
-        default:
-            return .newCalculation
-        }
-    }
-    
-    func getMileageAmount(totalMileage: Double, calculationType: CalculationType?) -> Double {
-        var mileageAmount: Double
-        switch calculationType {
-            
-        case .refuel:
-            mileageAmount = totalMileage - prevMileage
-            
-            return mileageAmount
-            
-        case .newTrip:
-            mileageAmount = prevMileage - totalMileage
-            
-            
-            return mileageAmount
-        case .newCalculation:
-            mileageAmount = totalMileage
-            
-            return mileageAmount
-        default:
-            return 0
-        }
-        
-        //        var mileageAmount: Double
-        //        if (prevMileage > totalMileage) {
-        //            mileageAmount = prevMileage - totalMileage
-        //            prevMileage = totalMileage
-        //
-        //
-        //        } else {
-        //            mileageAmount = totalMileage - prevMileage
-        //            prevMileage = tota
-        //        }
-        
-        
-        //        return mileageAmount
-    }
-    
-    func formatDateToString(date: Date?) -> String {
-        if (date == nil) {
-            return ""
-        }
-        
-        let dateFormatter = DateFormatter()
-        
-        let calendar = Calendar.current
-        
-        if calendar.isDateInToday(date!) {
-            dateFormatter.dateFormat = "'Today', HH:mm"
-        } else if calendar.isDateInYesterday(date!) {
-            dateFormatter.dateFormat = "'Yesterday', HH:mm"
-        } else {
-            dateFormatter.dateFormat = "dd MMM, HH:mm"
-        }
-        
-        let dateString = dateFormatter.string(from: date!)
-        
-        return dateString
-    }
 }
 
 struct DashboardView_Previews: PreviewProvider {
@@ -416,5 +256,6 @@ struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
         DashboardScreenPreviewer()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(DashboardViewModel.shared)
     }
 }

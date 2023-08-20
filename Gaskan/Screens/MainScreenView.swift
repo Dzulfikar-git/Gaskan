@@ -24,9 +24,10 @@ struct MainScreenView: View {
                     }
                 })
             } else {
-                DashboardView(path: $path).onAppear {
-//                        locationDataManager.handlePermission()
-                    }
+                DashboardView(path: $path)
+                    .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                    .environmentObject(locationDataManager)
+                    .environmentObject(DashboardViewModel.shared)
             }
         }
     }
@@ -34,6 +35,8 @@ struct MainScreenView: View {
 
 struct MainScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreenView()                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        MainScreenView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(LocationDataManager.shared)
     }
 }
