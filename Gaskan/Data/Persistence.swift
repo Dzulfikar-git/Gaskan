@@ -33,6 +33,11 @@ struct PersistenceController {
         }
         return result
     }()
+    
+    static var test: PersistenceController = {
+        let result = PersistenceController(inMemory: true)
+        return result
+    }()
 
     let container: NSPersistentContainer
 

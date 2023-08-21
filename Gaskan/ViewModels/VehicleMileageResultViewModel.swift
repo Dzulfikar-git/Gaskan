@@ -32,7 +32,7 @@ class VehicleMileageResultViewModel: ObservableObject {
         }
     }
     
-    func deleteAllItems(viewContext: NSManagedObjectContext, items: FetchedResults<Item>) {
+    func deleteAllItems(viewContext: NSManagedObjectContext, items: [Item]) {
         for item in items {
             deleteItem(viewContext: viewContext, item: item)
         }

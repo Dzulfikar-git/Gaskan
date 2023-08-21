@@ -76,9 +76,9 @@ class DashboardViewModel: ObservableObject {
         return dateString
     }
     
-    func updateRemainingMileage(items: FetchedResults<Item>) {
+    func updateRemainingMileage(items: [Item]) {
         // Update the UI asynchronously
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncTestable {
             withAnimation {
                 if let lastItem = items.last {
                     self.remainingMileage = Double(lastItem.totalMileage)

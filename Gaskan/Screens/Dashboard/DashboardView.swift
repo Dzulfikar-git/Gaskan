@@ -116,14 +116,14 @@ struct DashboardView: View {
                                         date: date,
                                         isShowDeleteButton: $isEditCalculation,
                                         onDelete: {
-                                            dashboardViewModel.updateRemainingMileage(items: items)
+                                            dashboardViewModel.updateRemainingMileage(items: Array(items) as [Item])
                                             dashboardViewModel.deleteItem(viewContext: viewContext,item: item)
                                         }
                                     )
                                     .frame(width: geometry.size.width)
                                     .fixedSize()
                                     .onAppear {
-                                        dashboardViewModel.updateRemainingMileage(items: items)
+                                        dashboardViewModel.updateRemainingMileage(items: Array(items) as [Item])
                                     }
                                 }
                             }
@@ -201,7 +201,7 @@ struct DashboardView: View {
                 path.append(VehicleMileageRoutingPath())
             }
             
-            dashboardViewModel.updateRemainingMileage(items: items)
+            dashboardViewModel.updateRemainingMileage(items: Array(items) as [Item])
         }
         .navigationDestination(for: VehicleMileageRoutingPath.self) { _ in
                 VehicleMileageScreenView(path: $path)

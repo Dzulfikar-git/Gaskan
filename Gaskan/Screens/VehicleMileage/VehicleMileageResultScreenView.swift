@@ -145,7 +145,7 @@ struct VehicleMileageResultScreenView: View {
                 Spacer()
                 
                 Button {
-                    vehicleMileageResultViewModel.deleteAllItems(viewContext: viewContext, items: items)
+                    vehicleMileageResultViewModel.deleteAllItems(viewContext: viewContext, items: Array(items))
                     vehicleMileageResultViewModel.addItem(viewContext: viewContext, calculationType: CalculationType.newCalculation.rawValue, totalMileage: Float(totalMileage), fuelEfficiency: Float(fuelEfficiency) ?? 0, fuelIn: Float(fuelIn) ?? 0, fuelCostPerUnit: Float(fuelCostPerUnit) ?? 0, unit: selectedUnit!)
                     
                     vehicleMileageResultViewModel.saveAppDefaultHasCalculation()
